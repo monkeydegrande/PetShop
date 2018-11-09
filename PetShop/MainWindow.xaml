@@ -6,7 +6,19 @@
         xmlns:local="clr-namespace:PetShop"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+
+    <StackPanel>
+        <TabControl x:Name="TabCollection" SelectedItem="{Binding SelectedTab, Mode=OneWayToSource}">
+            <TabItem Header="Dogs">
+                <local:DogDisplay/>
+            </TabItem>
+        </TabControl>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label Content="Quantity" Height="25" Margin="5"/>
+            <TextBox Text="{Binding Quantity}" Height="25" Width="50" Margin="5"/>
+            <Button Height="25" Width="100" Content="Add To Cart" Margin="5" Command="{Binding AddToCartCommand}" 
+                    CommandParameter="{Binding ElementName=TabCollection, Path=Items}"/>
+            <Button  Height="25" Width="100" Content="View cart" Command="{Binding OpenCartCommand}"/>
+        </StackPanel>
+    </StackPanel>
 </Window>
