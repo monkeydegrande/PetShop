@@ -59,15 +59,15 @@ namespace AniMall
                 if (loginTemp != null && loginTemp.Password == pwBox.Password)
                 {
                     //Seller goes to seller window
-                    if (loginTemp.PermLevel == 1)
+                    if (loginTemp.Seller == true)
                     {
-                        MainWindow Main = new MainWindow(People, loginTemp);
+                        MainWindow Main = new MainWindow(loginTemp);
                         this.Close();
                         Main.ShowDialog();
                     }
                     else
                     {
-                        CreateUserWindow employeeHome = new CreateUserWindow(People, loginTemp, false, null);
+                        CreateUserWindow employeeHome = new CreateUserWindow(People);
                         this.Close();
                         employeeHome.ShowDialog();
                     }
@@ -106,9 +106,17 @@ namespace AniMall
             }
             else
             {
-                    CreateUserWindow cuw = new CreateUserWindow(People);
+                CreateUserWindow cuw = new CreateUserWindow(People);
+                if(MessageBox.Show("There are no users on file. Would you like to create one?",
+                    "No Users File", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
                     this.Close();
                     cuw.ShowDialog();
+                }
+                else
+                {
+                    App.Current.Shutdown();
+                }
             }
         }
 

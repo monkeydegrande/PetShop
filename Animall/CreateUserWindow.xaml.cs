@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,15 +13,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Animall
+namespace AniMall
 {
-    /// <summary>
-    /// Interaction logic for CreateUserWindow.xaml
-    /// </summary>
     public partial class CreateUserWindow : Window
     {
-        public CreateUserWindow()
+        public ObservableCollection<Person> People = new ObservableCollection<Person>();
+
+        public CreateUserWindow(ObservableCollection<Person> people)
         {
+            People = people;
             InitializeComponent();
         }
     }

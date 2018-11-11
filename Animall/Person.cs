@@ -32,7 +32,7 @@ namespace AniMall
         [XmlElement(ElementName = "HomeAddress")]
         public Address HomeAddress { get; set; }
 
-        [XmlElement(DataType = "bool", ElementName = "Seller")]
+        [XmlElement(ElementName = "Seller")]
         public bool Seller { get; set; }
 
         /**CONSTRUCTORS**/

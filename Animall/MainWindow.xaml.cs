@@ -20,8 +20,9 @@ namespace AniMall
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(Person user)
         {
+            Person User = user;
             MainWindowVM mainWindow = new MainWindowVM();
             InitializeComponent();
             DataContext = mainWindow;
