@@ -97,6 +97,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Cat.cs" />
+    <Compile Include="CC.cs" />
     <Compile Include="CreateUserWindow.xaml.cs">
       <DependentUpon>CreateUserWindow.xaml</DependentUpon>
     </Compile>

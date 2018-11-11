@@ -31,20 +31,20 @@
             </Menu>
         </DockPanel>
 
-        <!--USER INFORMATION-->
+        <!--LOGIN INFORMATION-->
         <StackPanel Grid.Column="1" Grid.Row="1">
             <!--Seller-->
-            <StackPanel>
+            <StackPanel Margin="0,0,0,5">
                 <StackPanel DockPanel.Dock="Left">
-                    <Label Content="Seller" Height="23" Width="110" HorizontalAlignment="Left" FontFamily="Century Gothic" Margin="8,0,0,0"/>
-                    <Border x:Name="PermBorder" BorderThickness="0" BorderBrush="Salmon">
-                        <ComboBox x:Name="PermComboBox" SelectionChanged="SelectionChanged" Height="25" TabIndex="0" SelectedIndex="0" BorderBrush="White" FontFamily="Century Gothic" Margin="0" MinWidth="110" Width="110" MinHeight="25"/>
+                    <Label Content="Type of Account:" Height="26" Width="110" HorizontalAlignment="Left" FontFamily="Century Gothic" Margin="8,0,0,0"/>
+                    <Border x:Name="AccountBorder" BorderThickness="0" BorderBrush="Salmon">
+                        <ComboBox x:Name="AccountComboBox" SelectionChanged="SelectionChanged" Height="25" TabIndex="0" SelectedIndex="0" BorderBrush="White" FontFamily="Century Gothic" Margin="0" MinWidth="110" Width="110" MinHeight="25"/>
                     </Border>
                 </StackPanel>
             </StackPanel>
             <!--User Name-->
-            <StackPanel>
-                <Label Content="User Name:" Height="26" Margin="8,0,7,0" FontFamily="Century Gothic" />
+            <StackPanel Margin="0,0,0,5">
+                <Label Content="User Name:" Height="26" FontFamily="Century Gothic" Margin="8,0,7,0" />
                 <TextBox x:Name="UserNameTextBox" TextChanged="TextFieldChanged" Height="25" TextWrapping="Wrap" Width="110" TabIndex="1" FontFamily="Century Gothic" ToolTip="Any string is valid. "/>
             </StackPanel>
             <!--Password-->
@@ -57,7 +57,7 @@
         <!--PERSONAL INFORMATION-->
         <StackPanel Grid.Row="1" Grid.Column="3">
             <!--Names-->
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                 <!--First Name-->
                 <StackPanel HorizontalAlignment="Left" Margin="0,0,10,0">
                     <Label Content="First Name:" Height="26" Width="120" FontFamily="Century Gothic" HorizontalAlignment="Left"/>
@@ -71,7 +71,7 @@
 
             </StackPanel>
             <!--Street Address-->
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                 <!--Number-->
                 <StackPanel DockPanel.Dock="Left" Margin="0,0,10,0">
                     <Label Content="Number:" Height="26" Width="65" Grid.Row="3" FontFamily="Century Gothic"/>
@@ -84,7 +84,7 @@
                 </StackPanel>
             </StackPanel>
             <!--City State Zip-->
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                 <!--City-->
                 <StackPanel DockPanel.Dock="Left" Margin="0,0,10,0" >
                     <Label Content="City:" Height="26" Width="145" Grid.Row="4" FontFamily="Century Gothic"/>
@@ -104,7 +104,7 @@
                 </StackPanel>
             </StackPanel>
             <!--Email Address-->
-            <StackPanel>
+            <StackPanel Margin="0,0,0,5">
                 <StackPanel DockPanel.Dock="Right">
                     <Label Content="Email Address:" Height="26" Width="200" HorizontalAlignment="Left" FontFamily="Century Gothic"/>
                     <TextBox x:Name="EmailAddressTextBox" TextChanged="TextFieldChanged" Height="25" TextWrapping="Wrap" Width="314" TabIndex="10" HorizontalAlignment="Left" FontFamily="Century Gothic"/>
@@ -112,11 +112,13 @@
             </StackPanel>
             <Separator Height="20" Margin="10,0"/>
             <!--Payment Info-->
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                 <!--Card Type-->
                 <StackPanel HorizontalAlignment="Left" Margin="0,0,10,0">
                     <Label Content="Payment Type:" Height="26" Width="95" FontFamily="Century Gothic" HorizontalAlignment="Left"/>
-                    <ComboBox x:Name="PaymentComboBox" SelectionChanged="SelectionChanged" Height="25" HorizontalAlignment="Left" TabIndex="11" SelectedIndex="0" BorderBrush="White" FontFamily="Century Gothic" MinWidth="90" Width="95" MinHeight="25"/>
+                    <Border x:Name="PaymentBorder" BorderThickness="0" BorderBrush="Salmon">
+                        <ComboBox x:Name="PaymentComboBox" SelectionChanged="SelectionChanged" Height="25" HorizontalAlignment="Left" TabIndex="11" SelectedIndex="0" BorderBrush="White" FontFamily="Century Gothic" MinWidth="90" Width="95" MinHeight="25"/>
+                    </Border>
                 </StackPanel>
                 <!--Card Number-->
                 <StackPanel>
@@ -125,21 +127,25 @@
                 </StackPanel>
             </StackPanel>
             <!--Card Details-->
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                 <!--Expiration Date-->
                 <StackPanel>
                     <Label Content="Expiration Date:" Height="26" Width="115" FontFamily="Century Gothic" HorizontalAlignment="Left"/>
                     <!--Dates-->
                     <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
-                        <ComboBox x:Name="ExpMoComboBox" SelectionChanged="SelectionChanged" Height="25" HorizontalAlignment="Left" TabIndex="11" SelectedIndex="0" BorderBrush="White" FontFamily="Century Gothic" MinWidth="50" Width="50" MinHeight="25" Margin="0"/>
+                        <Border x:Name="ExpMoBorder" BorderThickness="0" BorderBrush="Salmon">
+                            <ComboBox x:Name="ExpMoComboBox" SelectionChanged="SelectionChanged" Height="25" HorizontalAlignment="Left" TabIndex="11" SelectedIndex="0" BorderBrush="White" FontFamily="Century Gothic" MinWidth="50" Width="50" MinHeight="25" Margin="0"/>
+                        </Border>
                         <Label Content="/" FontFamily="Century Gothic"/>
-                        <ComboBox x:Name="ExpYrComboBox" SelectionChanged="SelectionChanged" Height="25" HorizontalAlignment="Left" TabIndex="11" SelectedIndex="0" BorderBrush="White" FontFamily="Century Gothic" MinWidth="50" Width="50" MinHeight="25"/>
+                        <Border x:Name="ExpYrBorder" BorderThickness="0" BorderBrush="Salmon">
+                            <ComboBox x:Name="ExpYrComboBox" SelectionChanged="SelectionChanged" Height="25" HorizontalAlignment="Left" TabIndex="11" SelectedIndex="0" BorderBrush="White" FontFamily="Century Gothic" MinWidth="50" Width="50" MinHeight="25"/>
+                        </Border>
                     </StackPanel>
                 </StackPanel>
                 <!--CVV-->
                 <StackPanel DockPanel.Dock="Right">
-                    <Label Content="CVV:" Height="26" Width="240" FontFamily="Century Gothic" />
-                    <TextBox x:Name="CVVTextbox" TextChanged="TextFieldChanged" Height="25" TextWrapping="Wrap" Width="40" TabIndex="12" FontFamily="Century Gothic" HorizontalAlignment="Left"/>
+                    <Label Content="CVV:" Height="26" Width="40" FontFamily="Century Gothic" />
+                    <TextBox x:Name="CVVTextBox" TextChanged="TextFieldChanged" Height="25" TextWrapping="Wrap" Width="40" TabIndex="12" FontFamily="Century Gothic" HorizontalAlignment="Left"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
