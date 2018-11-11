@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 
-namespace PetShop
+namespace Animall
 {
     public class MainWindowVM : INotifyPropertyChanged
     {

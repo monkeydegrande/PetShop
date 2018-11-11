@@ -10,11 +10,11 @@ using System.Windows;
 using System.Windows.Data;
 using System.Xml.Serialization;
 
-namespace PetShop
+namespace Animall
 {
     public class DogDisplayVM : INotifyPropertyChanged
     {
-        string path = "stockPath.xml";
+        readonly string path = "stockPath.xml";
         XmlSerializer Xmler = new XmlSerializer(typeof(ObservableCollection<Dog>));
         public ObservableCollection<Dog> DogCollection { get; set; } = new ObservableCollection<Dog>();
 

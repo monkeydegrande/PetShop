@@ -7,7 +7,7 @@ using System.Collections;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 
-namespace PetShop
+namespace Animall
 {
     [XmlRoot(ElementName = "Person")]
     //Person class

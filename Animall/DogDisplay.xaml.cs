@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PetShop
+namespace Animall
 {
     /// <summary>
-    /// Interaction logic for ShoppingCart.xaml
+    /// Interaction logic for DogDisplay.xaml
     /// </summary>
-    public partial class Cart : Window
+    public partial class DogDisplay : UserControl
     {
-        public Cart()
+        public DogDisplay()
         {
             InitializeComponent();
         }
