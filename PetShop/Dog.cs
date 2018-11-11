@@ -8,8 +8,7 @@ namespace PetShop
 {
     public class Dog : Animal
     {
-        public Dog(string description, string price, int stock, string name, string imagePath)
-        {
-        }
+        public Dog() { }
+        public Dog(string description, double price, int stock, string name, string imagePath) { }
     }
 }

@@ -3,26 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace PetShop
 {
+    [XmlInclude(typeof(Dog))]
+    [XmlInclude(typeof(Cat))]
+    [XmlRoot(ElementName = "Animal")]
     public class Animal
     {
+        [XmlElement(DataType = "string", ElementName = "Breed")]
+        public string Breed { get; set; }
+
+        [XmlElement(DataType = "string", ElementName = "Description")]
         public string Description { get; set; }
-        public string Price { get; set; }
+
+        [XmlElement(DataType = "double", ElementName = "Price")]
+        public double Price { get; set; }
+
+        [XmlElement(DataType = "int", ElementName = "Stock")]
         public int Stock { get; set; }
-        public string Name { get; set; }
+
+        [XmlElement(DataType = "string", ElementName = "ImagePath")]
         public string ImagePath { get; set; }
+
+        [XmlElement(DataType = "int", ElementName = "PurchAmt")]
         public int PurchAmt { get; set; }
 
         public Animal() { }
 
-        public Animal(string description, string price, int stock, string name, string imagePath)
+        public Animal(string description, double price, int stock, string breed, string imagePath)
         {
-            Description = description;
+            Breed = description;
             Price = price;
             Stock = stock;
-            Name = name;
+            Breed = breed;
             ImagePath = imagePath;
         }
     }

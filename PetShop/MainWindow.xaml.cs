@@ -69,7 +69,7 @@ namespace PetShop
             selectAnimal.Stock -= purchAmt;
             selectAnimal.PurchAmt = purchAmt;
             CartCont.Add(selectAnimal as object);
-            Total += double.Parse(selectAnimal.Price.Replace("$", "")) * purchAmt;
+            Total += selectAnimal.Price * purchAmt;
         }
 
         public ICommand AddToCartCommand
@@ -88,8 +88,8 @@ namespace PetShop
 
         private void OpenCartClicked(object obj)
         {
-            ShoppingCartVM shoppingCartVM = new ShoppingCartVM(this);
-            ShoppingCart cart = new ShoppingCart();
+            CartVM shoppingCartVM = new CartVM(this);
+            Cart cart = new Cart();
             cart.DataContext = shoppingCartVM;
             cart.Show();
         }

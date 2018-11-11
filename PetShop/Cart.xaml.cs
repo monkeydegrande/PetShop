@@ -17,9 +17,9 @@ namespace PetShop
     /// <summary>
     /// Interaction logic for ShoppingCart.xaml
     /// </summary>
-    public partial class ShoppingCart : Window
+    public partial class Cart : Window
     {
-        public ShoppingCart()
+        public Cart()
         {
             InitializeComponent();
         }

@@ -17,7 +17,7 @@
                 <Image Source="{Binding ImagePath}" Margin="5" Width="75" Height="60"/>
                 <StackPanel>
                     <TextBlock Text="{Binding Name}" FontFamily="Arial" FontSize="14" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding Description}" Width="200" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Breed}" Width="200" TextWrapping="Wrap"/>
                     <TextBlock Text="{Binding Price}" Width="200" TextWrapping="Wrap"/>
                     <TextBlock Text="{Binding Stock}" Width="200" TextWrapping="Wrap"/>
                 </StackPanel>
