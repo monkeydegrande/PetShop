@@ -13,8 +13,8 @@ namespace AniMall
         [XmlElement(DataType = "string", ElementName = "Type")]
         public string Type { get; set; }
 
-        [XmlElement(DataType = "int", ElementName = "CardNumber")]
-        public int CardNumber { get; set; }
+        [XmlElement(DataType = "long", ElementName = "CardNumber")]
+        public long CardNumber { get; set; }
 
         [XmlElement(DataType = "int", ElementName = "ExpMo")]
         public int ExpMo { get; set; }
@@ -27,7 +27,7 @@ namespace AniMall
 
         public CC() { }
 
-        public CC(string type, int cardNumber, int expMo, int expYr, int cvv)
+        public CC(string type, long cardNumber, int expMo, int expYr, int cvv)
         {
             Type = type;
             CardNumber = cardNumber;

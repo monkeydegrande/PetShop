@@ -14,8 +14,8 @@ namespace AniMall
     public class Person
     {
         //Properties
-        [XmlElement(ElementName = "Seller")]
-        public bool Seller { get; set; }
+        [XmlElement(ElementName = "AccountType")]
+        public string AccountType { get; set; }
 
         [XmlElement(DataType = "string", ElementName = "UserName")]
         public string UserName { get; set; }
@@ -41,15 +41,16 @@ namespace AniMall
         /**CONSTRUCTORS**/
         public Person() { }
 
-        public Person(bool seller, string userName, string password, string first, string last, Address address, int schoolID, string email)
+        public Person(string accountType, string userName, string password, string first, string last, Address address, int schoolID, string email, CC cc)
         {
+            AccountType = accountType;
+            UserName = userName;
+            Password = password;
             FirstName = first;
             LastName = last;
             HomeAddress = address;
-            UserName = userName;
-            Password = password;
             Email = email;
-            Seller = seller;
+            UserCreditCard = cc;
         }
 
         //Return name and ID of student

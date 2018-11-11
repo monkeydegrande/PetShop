@@ -123,7 +123,7 @@
                 <!--Card Number-->
                 <StackPanel>
                     <Label Content="Card Number:" Height="26" Width="204" FontFamily="Century Gothic" HorizontalAlignment="Left" />
-                    <TextBox x:Name="CardTextBox" TextChanged="TextFieldChanged" Height="25" TextWrapping="Wrap"  Width="208" TabIndex="12" FontFamily="Century Gothic" HorizontalAlignment="Left" MinWidth="208" MinHeight="25"/>
+                    <TextBox x:Name="CardTextBox" TextChanged="TextFieldChanged" Height="25" TextWrapping="Wrap"  Width="209" TabIndex="12" FontFamily="Century Gothic" HorizontalAlignment="Left" MinWidth="208" MinHeight="25"/>
                 </StackPanel>
             </StackPanel>
             <!--Card Details-->
@@ -143,10 +143,12 @@
                     </StackPanel>
                 </StackPanel>
                 <!--CVV-->
-                <StackPanel DockPanel.Dock="Right">
+                <StackPanel Margin="0,0,10,0">
                     <Label Content="CVV:" Height="26" Width="40" FontFamily="Century Gothic" />
                     <TextBox x:Name="CVVTextBox" TextChanged="TextFieldChanged" Height="25" TextWrapping="Wrap" Width="40" TabIndex="12" FontFamily="Century Gothic" HorizontalAlignment="Left"/>
                 </StackPanel>
+                <!--Add User Button-->
+                <Button x:Name="AddUserButton" Content="Add Account" Height="26" Width="100" Margin="39,0,0,0" VerticalAlignment="Bottom" Click="AddUserClick"/>
             </StackPanel>
         </StackPanel>
     </Grid>
