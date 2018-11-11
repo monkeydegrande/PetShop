@@ -15,12 +15,9 @@ using System.Windows.Shapes;
 
 namespace AniMall
 {
-    /// <summary>
-    /// Interaction logic for DogDisplay.xaml
-    /// </summary>
-    public partial class DogDisplay : UserControl
+    public partial class AnimalDisplay : UserControl
     {
-        public DogDisplay()
+        public AnimalDisplay()
         {
             InitializeComponent();
         }

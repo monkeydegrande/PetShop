@@ -12,33 +12,33 @@ using System.Xml.Serialization;
 
 namespace AniMall
 {
-    public class DogDisplayVM : INotifyPropertyChanged
+    public class AnimalDisplayVM : INotifyPropertyChanged
     {
         readonly string path = "stockPath.xml";
-        XmlSerializer Xmler = new XmlSerializer(typeof(ObservableCollection<Dog>));
-        public ObservableCollection<Dog> DogCollection { get; set; } = new ObservableCollection<Dog>();
+        XmlSerializer Xmler = new XmlSerializer(typeof(ObservableCollection<Animal>));
+        public ObservableCollection<Animal> Animals { get; set; } = new ObservableCollection<Animal>();
 
-        private Dog selectedDog;
-        public Dog SelectedDog
+        private Animal selectedAnimal;
+        public Animal SelectedAnimal
         {
-            get { return selectedDog; }
+            get { return selectedAnimal; }
             set
             {
-                selectedDog = value;
+                selectedAnimal = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("SelectedDog"));
             }
         }
 
-        public DogDisplayVM()
+        public AnimalDisplayVM()
         {
             ReadInDataFromXML();
         }
 
         private void ReadInDataFromXML()
         {
-            DogCollection = new ObservableCollection<Dog>()
+            Animals = new ObservableCollection<Animal>()
             {
-                new Dog("Magoo", 200.00, 5, "Labrador",@"\Images\labrador.jpg"),
+                new Animal("Magoo", 200.00, 5, "Labrador",@"\Images\labrador.jpg")
             };
             //Read in stock information information from previous session, stored in XML file
             try { ReadStockFile(); }
@@ -57,11 +57,10 @@ namespace AniMall
                 using (FileStream ReadStream = new FileStream(path,
                 FileMode.Open, FileAccess.Read))
                 {
-                    DogCollection = Xmler.Deserialize(ReadStream)
-                    as ObservableCollection<Dog>;
+                    Animals = Xmler.Deserialize(ReadStream)
+                    as ObservableCollection<Animal>;
                 }
             }
-
         }
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
     }

@@ -10,8 +10,6 @@ namespace AniMall
 {
     public class MainWindowVM : INotifyPropertyChanged
     {
-        public TabItem Tab { get; set; }
-
         private ObservableCollection<object> cartCont = new ObservableCollection<object>();
         public ObservableCollection<object> CartCont
         {
@@ -56,7 +54,6 @@ namespace AniMall
                 PropertyChanged(this, new PropertyChangedEventArgs("Qty"));
             }
         }
-
 
         public MainWindowVM() { }
 

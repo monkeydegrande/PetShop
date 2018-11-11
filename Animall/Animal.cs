@@ -7,8 +7,6 @@ using System.Xml.Serialization;
 
 namespace AniMall
 {
-    [XmlInclude(typeof(Dog))]
-    [XmlInclude(typeof(Cat))]
     [XmlRoot(ElementName = "Animal")]
     public class Animal
     {

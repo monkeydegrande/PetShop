@@ -8,11 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
 
     <StackPanel>
-        <TabControl x:Name="TabCollection" SelectedItem="{Binding SelectedTab, Mode=OneWayToSource}">
-            <TabItem Header="Dogs">
-                <local:DogDisplay/>
-            </TabItem>
-        </TabControl>
+        <local:AnimalDisplay Height="395"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Label Content="Quantity" Height="25" Margin="5"/>
             <TextBox Text="{Binding Quantity}" Height="25" Width="50" Margin="5"/>

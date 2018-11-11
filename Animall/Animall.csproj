@@ -79,7 +79,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DogDisplay.xaml">
+    <Page Include="AnimalDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -96,17 +96,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Cat.cs" />
     <Compile Include="CC.cs" />
     <Compile Include="CreateUserWindow.xaml.cs">
       <DependentUpon>CreateUserWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DelegateCommand.cs" />
-    <Compile Include="Dog.cs" />
-    <Compile Include="DogDisplay.xaml.cs">
-      <DependentUpon>DogDisplay.xaml</DependentUpon>
+    <Compile Include="AnimalDisplay.xaml.cs">
+      <DependentUpon>AnimalDisplay.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DogDisplayVM.cs" />
+    <Compile Include="AnimalDisplayVM.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
