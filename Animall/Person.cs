@@ -7,7 +7,7 @@ using System.Collections;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 
-namespace Animall
+namespace AniMall
 {
     [XmlRoot(ElementName = "Person")]
     //Person class
@@ -32,10 +32,13 @@ namespace Animall
         [XmlElement(ElementName = "HomeAddress")]
         public Address HomeAddress { get; set; }
 
+        [XmlElement(DataType = "bool", ElementName = "Seller")]
+        public bool Seller { get; set; }
+
         /**CONSTRUCTORS**/
         public Person() { }
 
-        public Person(string first, string last, Address address, int schoolID, string email, string userName, string password)
+        public Person(string first, string last, Address address, int schoolID, string email, string userName, string password, bool seller)
         {
             FirstName = first;
             LastName = last;
@@ -43,6 +46,7 @@ namespace Animall
             UserName = userName;
             Password = password;
             Email = email;
+            Seller = seller;
         }
 
         //Return name and ID of student

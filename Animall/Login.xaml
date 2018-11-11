@@ -1,11 +1,11 @@
-﻿<Window x:Class="Animall.Login"
+﻿<Window x:Class="AniMall.Login"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Animall"
+        xmlns:local="clr-namespace:AniMall"
         mc:Ignorable="d"
-        Title="Animall Login"  WindowStartupLocation="CenterScreen" MinWidth="245" MinHeight="200" Width="245" Height="200" MaxHeight="200" MaxWidth="245">
+        Title="AniMall Login"  WindowStartupLocation="CenterScreen" MinWidth="245" MinHeight="200" Width="245" Height="200" MaxHeight="200" MaxWidth="245">
     <Grid Background="#FFEEEEEE">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15*"/>
@@ -19,12 +19,12 @@
 
             <StackPanel Orientation="Horizontal" Margin="0,2">
                 <Label Content="Password:" Height="30" Width="90" HorizontalContentAlignment="Right" FontFamily="Century Gothic" FontSize="14"/>
-                <PasswordBox x:Name="pwBox" Width="120" Height="30" FontFamily="Century Gothic" VerticalContentAlignment="Center" TabIndex="1" ToolTip="Enter password"/>
+                <PasswordBox x:Name="pwBox" Width="120" Height="30" FontFamily="Century Gothic" VerticalContentAlignment="Center" TabIndex="1" ToolTip="Enter your password"/>
             </StackPanel>
 
             <DockPanel HorizontalAlignment="Center" Width="190" Margin="0,10">
-                <Button x:Name="loginButton" DockPanel.Dock="Left" Content="Login" Width="90" Click="loginButton_Click" Background="White" FontFamily="Century Gothic" Height="25" TabIndex="2" ToolTip="Click her to login"/>
-                <Button x:Name="createUserButton" DockPanel.Dock="Right" Content="Create User" Width="90"  Click="createUserButton_Click" HorizontalAlignment="Right" Background="White" FontFamily="Century Gothic" Height="25" TabIndex="3" ToolTip="New users click her to create an account"/>
+                <Button x:Name="loginButton" DockPanel.Dock="Left" Content="Login" Width="90" Click="loginButton_Click" Background="White" FontFamily="Century Gothic" Height="25" TabIndex="2" ToolTip="Click here to login"/>
+                <Button x:Name="createUserButton" DockPanel.Dock="Right" Content="Create User" Width="90"  Click="createUserButton_Click" HorizontalAlignment="Right" Background="White" FontFamily="Century Gothic" Height="25" TabIndex="3" ToolTip="New users, click here to create an account"/>
             </DockPanel>
         </StackPanel>
     </Grid>

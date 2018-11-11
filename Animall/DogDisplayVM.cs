@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Xml.Serialization;
 
-namespace Animall
+namespace AniMall
 {
     public class DogDisplayVM : INotifyPropertyChanged
     {

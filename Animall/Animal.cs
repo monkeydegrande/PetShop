@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Animall
+namespace AniMall
 {
     [XmlInclude(typeof(Dog))]
     [XmlInclude(typeof(Cat))]

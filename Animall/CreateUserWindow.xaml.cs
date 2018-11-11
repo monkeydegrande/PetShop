@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace AniMall
+namespace Animall
 {
     /// <summary>
-    /// Interaction logic for ShoppingCart.xaml
+    /// Interaction logic for CreateUserWindow.xaml
     /// </summary>
-    public partial class Cart : Window
+    public partial class CreateUserWindow : Window
     {
-        public Cart()
+        public CreateUserWindow()
         {
             InitializeComponent();
         }

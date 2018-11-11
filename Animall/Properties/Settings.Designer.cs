@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Animall.Properties {
+namespace AniMall.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
