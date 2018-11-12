@@ -72,6 +72,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Address.cs" />
+    <Compile Include="BuyerVM.cs" />
     <Compile Include="CartVM.cs" />
     <Compile Include="Cart.xaml.cs">
       <DependentUpon>Cart.xaml</DependentUpon>
@@ -119,7 +120,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindowVM.cs" />
+    <Compile Include="SellerVM.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

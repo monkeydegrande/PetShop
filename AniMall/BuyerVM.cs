@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace AniMall
 {
-    public class MainWindowVM : INotifyPropertyChanged
+    public class BuyerVM : INotifyPropertyChanged
     {
         public TabItem Tab { get; set; }  //TO-DO 
 
@@ -57,7 +57,7 @@ namespace AniMall
             }
         }
 
-        public MainWindowVM() {}
+        public BuyerVM() { }
 
         private void AddToCartClicked(object obj)
         {

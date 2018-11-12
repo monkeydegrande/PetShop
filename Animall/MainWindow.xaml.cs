@@ -20,11 +20,23 @@ namespace AniMall
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        Person User;
+        public MainWindow(Person user)
         {
-            MainWindowVM mainWindow = new MainWindowVM();
+            User = user;
+            if(user.AccountType == "Seller")
+            {
+                SellerVM SVM = new SellerVM();
+                DataContext = SVM;
+            }
+            else
+            {
+                BuyerVM BVM = new BuyerVM();
+                DataContext = BVM;
+            }
+
+
             InitializeComponent();
-            DataContext = mainWindow;
         }
     }
 }

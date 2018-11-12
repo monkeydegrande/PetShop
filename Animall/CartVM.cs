@@ -11,8 +11,8 @@ namespace AniMall
 {
     public class CartVM : INotifyPropertyChanged
     {
-        public MainWindowVM Parent { get; set; }
-        public CartVM(MainWindowVM parent) { Parent = parent; }
+        public BuyerVM Parent { get; set; }
+        public CartVM(BuyerVM parent) { Parent = parent; }
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         public void UpdateCartClicked(object obj)
