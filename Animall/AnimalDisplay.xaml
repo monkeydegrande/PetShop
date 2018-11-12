@@ -24,7 +24,6 @@
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
-
     <ListBox x:Name="AnimalListBox" ItemsSource="{Binding Animals}" 
              SelectedItem="{Binding SelectedAnimal}" Background="AliceBlue"
              ItemTemplate="{StaticResource ProductTemplate}" />
