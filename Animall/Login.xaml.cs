@@ -61,7 +61,7 @@ namespace AniMall
                     //Seller goes to seller window
                     if (loginTemp.AccountType == "Seller")
                     {
-                        MainWindow Main = new MainWindow(loginTemp);
+                        MainWindow Main = new MainWindow();
                         this.Close();
                         Main.ShowDialog();
                     }
