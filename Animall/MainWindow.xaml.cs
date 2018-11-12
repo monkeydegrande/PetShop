@@ -24,7 +24,6 @@ namespace AniMall
         {
             MainWindowVM mainWindow = new MainWindowVM();
             InitializeComponent();
-            DataContext = mainWindow;
         }
     }
 }

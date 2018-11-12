@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AniMall"
              Background="White"
-             Height="450" Width="800">
+             Height="475" Width="800">
 
     <UserControl.DataContext>
         <local:BuyerDisplayVM/>
