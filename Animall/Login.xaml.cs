@@ -58,19 +58,9 @@ namespace AniMall
 
                 if (loginTemp != null && loginTemp.Password == pwBox.Password)
                 {
-                    //Seller goes to seller window
-                    if (loginTemp.AccountType == "Seller")
-                    {
-                        MainWindow Main = new MainWindow();
-                        this.Close();
-                        Main.ShowDialog();
-                    }
-                    else
-                    {
-                        CreateUserWindow employeeHome = new CreateUserWindow(People);
-                        this.Close();
-                        employeeHome.ShowDialog();
-                    }
+                    MainWindow Main = new MainWindow(loginTemp.AccountType);
+                    this.Close();
+                    Main.ShowDialog();
                 }
                 else
                 {

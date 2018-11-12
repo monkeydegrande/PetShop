@@ -80,7 +80,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AnimalDisplay.xaml">
+    <Page Include="BuyerDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -102,10 +102,10 @@
       <DependentUpon>CreateUserWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DelegateCommand.cs" />
-    <Compile Include="AnimalDisplay.xaml.cs">
-      <DependentUpon>AnimalDisplay.xaml</DependentUpon>
+    <Compile Include="BuyerDisplay.xaml.cs">
+      <DependentUpon>BuyerDisplay.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AnimalDisplayVM.cs" />
+    <Compile Include="BuyerDisplayVM.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>

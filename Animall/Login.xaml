@@ -5,19 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AniMall"
         mc:Ignorable="d"
-        Title="AniMall Login"  WindowStartupLocation="CenterScreen" MinWidth="245" MinHeight="200" Width="245" Height="200" MaxHeight="200" MaxWidth="245">
+        Title="AniMall Login"  WindowStartupLocation="CenterScreen" MinWidth="305" Width="305" MinHeight="200"  Height="200" MaxHeight="200" MaxWidth="305">
     <Grid Background="#FFEEEEEE">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="15*"/>
-            <ColumnDefinition Width="106*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="222" Height="110" Grid.ColumnSpan="2" >
-            <StackPanel Orientation="Horizontal" Margin="0,2">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="110" Grid.ColumnSpan="2" >
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,2">
                 <Label  Content="User Name:" HorizontalContentAlignment="Right" Height="30" Width="90" FontFamily="Century Gothic" FontSize="14"/>
                 <TextBox x:Name="userName" Width="120" Height="30" FontFamily="Century Gothic"  VerticalContentAlignment="Center" TabIndex="0" ToolTip="Enter Username"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="0,2">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,2">
                 <Label Content="Password:" Height="30" Width="90" HorizontalContentAlignment="Right" FontFamily="Century Gothic" FontSize="14"/>
                 <PasswordBox x:Name="pwBox" Width="120" Height="30" FontFamily="Century Gothic" VerticalContentAlignment="Center" TabIndex="1" ToolTip="Enter your password"/>
             </StackPanel>

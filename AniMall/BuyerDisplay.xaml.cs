@@ -15,9 +15,9 @@ using System.Windows.Shapes;
 
 namespace AniMall
 {
-    public partial class AnimalDisplay : UserControl
+    public partial class BuyerDisplay : UserControl
     {
-        public AnimalDisplay()
+        public BuyerDisplay()
         {
             InitializeComponent();
         }

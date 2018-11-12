@@ -12,7 +12,7 @@ using System.Xml.Serialization;
 
 namespace AniMall
 {
-    public class AnimalDisplayVM : INotifyPropertyChanged
+    public class BuyerDisplayVM : INotifyPropertyChanged
     {
         static readonly string StockPath = "stock.xml";
         static XmlSerializer Xmler = new XmlSerializer(typeof(ObservableCollection<Animal>));
@@ -29,7 +29,7 @@ namespace AniMall
             }
         }
 
-        public AnimalDisplayVM()
+        public BuyerDisplayVM()
         {
             ReadInDataFromXML();
         }

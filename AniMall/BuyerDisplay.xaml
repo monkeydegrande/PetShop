@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="AniMall.AnimalDisplay"
+﻿<UserControl x:Class="AniMall.BuyerDisplay"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,7 +8,7 @@
              Height="450" Width="800">
 
     <UserControl.DataContext>
-        <local:AnimalDisplayVM/>
+        <local:BuyerDisplayVM/>
     </UserControl.DataContext>
 
     <UserControl.Resources>
