@@ -14,12 +14,12 @@
     <UserControl.Resources>
         <DataTemplate x:Key="ProductTemplate">
             <StackPanel Orientation="Horizontal">
-                <Image Source="{Binding ImagePath}" Margin="5" Width="75" Height="60"/>
+                <Image Source="{Binding ImagePath}" Margin="5" Width="75" Height="75"/>
                 <StackPanel>
                     <TextBlock Text="{Binding Name}" FontFamily="Arial" FontSize="14" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding Breed}" Width="200" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Price}" Width="200" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Stock}" Width="200" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Description}" Width="200" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Price, StringFormat=Window height: {0:C}}" Width="200" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Stock, StringFormat=In Stock: {0:#}}" Width="200" TextWrapping="Wrap"/>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>

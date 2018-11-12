@@ -26,7 +26,7 @@ namespace AniMall
         public ObservableCollection<Person> People = new ObservableCollection<Person>();
 
         //Main csv data file
-        static string XmlPath = "People.xml";
+        static string XmlPath = "people.xml";
 
         //CONSTRUCTOR
         public Login()

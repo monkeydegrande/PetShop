@@ -161,5 +161,15 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\frenchy.jpg" />
+    <Resource Include="Images\gerbil.jpg" />
+    <Resource Include="Images\pangolin.jpg" />
+    <Resource Include="Images\pterodactyl.jpg" />
+    <Resource Include="Images\ragdoll.jpg" />
+    <Resource Include="Images\siamese.jpg" />
+    <Resource Include="Images\toucan.jpg" />
+    <Resource Include="Images\velociraptor.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,8 +10,8 @@ namespace AniMall
     [XmlRoot(ElementName = "Animal")]
     public class Animal
     {
-        [XmlElement(DataType = "string", ElementName = "Breed")]
-        public string Breed { get; set; }
+        [XmlElement(DataType = "string", ElementName = "Name")]
+        public string Name { get; set; }
 
         [XmlElement(DataType = "string", ElementName = "Description")]
         public string Description { get; set; }
@@ -30,12 +30,12 @@ namespace AniMall
 
         public Animal() { }
 
-        public Animal(string description, double price, int stock, string breed, string imagePath)
+        public Animal(string name, string description, double price, int stock, string imagePath)
         {
-            Breed = description;
+            Name = name;
+            Description = description;
             Price = price;
             Stock = stock;
-            Breed = breed;
             ImagePath = imagePath;
         }
     }
