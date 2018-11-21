@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2019
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AniMall", "Animall\AniMall.csproj", "{1620F213-9B45-49ED-B6D8-DC5971C3C218}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AniMall", "AniMall\AniMall.csproj", "{00DAEC65-2B98-492E-953A-2C3A7EEDE5BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1620F213-9B45-49ED-B6D8-DC5971C3C218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1620F213-9B45-49ED-B6D8-DC5971C3C218}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1620F213-9B45-49ED-B6D8-DC5971C3C218}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1620F213-9B45-49ED-B6D8-DC5971C3C218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00DAEC65-2B98-492E-953A-2C3A7EEDE5BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00DAEC65-2B98-492E-953A-2C3A7EEDE5BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00DAEC65-2B98-492E-953A-2C3A7EEDE5BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00DAEC65-2B98-492E-953A-2C3A7EEDE5BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8ACE3D5D-69F4-4746-86BD-917B1C6CAD57}
+		SolutionGuid = {F7B7E06E-AF1A-4214-AF6E-C349253D3AF4}
 	EndGlobalSection
 EndGlobal
