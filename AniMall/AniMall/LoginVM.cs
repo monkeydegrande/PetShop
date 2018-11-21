@@ -19,7 +19,7 @@ namespace AniMall
         ObservableCollection<Person> People;
         public LoginVM(MainWindowVM mvm)
         {
-            MW = mvm.MainWindow;
+            MW = mvm.MW;
             MVM = mvm;
             User = MVM.User;
             People = MVM.People;
@@ -27,20 +27,22 @@ namespace AniMall
 
         //EVENT HANDLERS
 
-//DELEGATES AND BUTTONCLICKS
+
+
+        //DELEGATES AND BUTTONCLICKS
 
         //Login
-        private void LoginButtonClick(object obj)
+        private void LoginClick(object obj)
         {
-            if (MVM.MainWindow.LoginValidateEntries())
+            if (MW.LoginValidateEntries())
             {
                 Person loginTemp = People.FirstOrDefault(user => user.UserName == MW.Login.userName.Text);
-                
+
                 if (loginTemp != null && loginTemp.Password == MW.Login.pwBox.Password)
                 {
                     MW.Login.Visibility = Visibility.Hidden;
-                    if(loginTemp.AccountType == "Seller")
-                    {         
+                    if (loginTemp.AccountType == "Seller")
+                    {
                         MW.Seller.Visibility = Visibility.Visible;
                     }
                 }
@@ -61,7 +63,7 @@ namespace AniMall
             {
                 if (_loginEvent == null)
                 {
-                    _loginEvent = new DelegateCommand(LoginButtonClick);
+                    _loginEvent = new DelegateCommand(LoginClick);
                 }
 
                 return _loginEvent;
@@ -71,7 +73,7 @@ namespace AniMall
         DelegateCommand _loginEvent;
 
         //Create user
-        private void CreateUserClick(object obj)
+        private void CreateClick(object obj)
         {
             MW.Login.Visibility = Visibility.Hidden;
             MW.Create.Visibility = Visibility.Visible;
@@ -83,7 +85,7 @@ namespace AniMall
             {
                 if (_createUserEvent == null)
                 {
-                    _createUserEvent = new DelegateCommand(CreateUserClick);
+                    _createUserEvent = new DelegateCommand(CreateClick);
                 }
 
                 return _createUserEvent;
@@ -92,6 +94,6 @@ namespace AniMall
 
         DelegateCommand _createUserEvent;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
     }
 }

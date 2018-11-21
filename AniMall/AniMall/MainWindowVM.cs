@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using System.Xml.Serialization;
 
 namespace AniMall
 {
-    public class MainWindowVM
+    public class MainWindowVM : INotifyPropertyChanged
     {
 
 //PROPERTIES
-        public MainWindow MainWindow { get; set; }
+        public MainWindow MW { get; set; }
         public LoginVM LoginVM { get; set; }
         public BuyerVM BuyerVM { get; set; }
         public SellerVM SellerVM { get; set; }
@@ -63,8 +65,8 @@ namespace AniMall
                 if (MessageBox.Show("There are no users on file. Would you like to create one?",
                     "No Users File", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    MainWindow.Login.Visibility = Visibility.Hidden;
-                    MainWindow.Create.Visibility = Visibility.Visible;
+                    MW.Login.Visibility = Visibility.Hidden;
+                    MW.Create.Visibility = Visibility.Visible;
                 }
                 else
                 {
@@ -93,6 +95,11 @@ namespace AniMall
                 }
             }
         }
+
+
+//DELEGATES AND BUTTONCLICKS
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
     }
 }

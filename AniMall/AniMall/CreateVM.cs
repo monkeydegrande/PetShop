@@ -29,7 +29,6 @@ namespace AniMall
         public CreateVM(MainWindowVM mvm)
         {
             MVM = mvm;
-            MW = MVM.MainWindow;
             PopulateControls();
         }
 

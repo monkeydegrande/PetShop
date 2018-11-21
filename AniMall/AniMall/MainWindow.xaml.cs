@@ -19,9 +19,9 @@ namespace AniMall
     {
         public MainWindow()
         {
-            MainWindowVM MWVM = new MainWindowVM(this);
+            MainWindowVM MVM = new MainWindowVM(this);
             InitializeComponent();
-            DataContext = MWVM;
+            DataContext = MVM;
         }
 
         // Ensures username and password fields are not empty

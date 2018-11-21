@@ -20,8 +20,8 @@
             </StackPanel>
 
             <DockPanel HorizontalAlignment="Center">
-                <Button x:Name="loginButton" Style="{StaticResource LoginButtonStyle}" DockPanel.Dock="Left" Content="Login" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=pwBox}" TabIndex="2" ToolTip="Click here to login"/>
-                <Button x:Name="createUserButton" Style="{StaticResource LoginButtonStyle}" DockPanel.Dock="Right" Content="Create User" Command="{Binding CreateUserCommand}" TabIndex="3" ToolTip="New users, click here to create an account"/>
+                <Button x:Name="loginButton" Style="{StaticResource LoginButtonStyle}" DockPanel.Dock="Left" Content="Login" Command="{Binding LoginVM.LoginCommand}" TabIndex="2" ToolTip="Click here to login"/>
+                <Button x:Name="createUserButton" Style="{StaticResource LoginButtonStyle}" DockPanel.Dock="Right" Content="Create User" Command="{Binding LoginVM.CreateCommand}" TabIndex="3" ToolTip="New users, click here to create an account"/>
             </DockPanel>
         </StackPanel>
     </Grid>

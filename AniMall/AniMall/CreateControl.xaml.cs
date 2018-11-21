@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace AniMall
 {
-    /// <summary>
-    /// Interaction logic for CreateControl.xaml
-    /// </summary>
     public partial class CreateControl : UserControl
     {
         public CreateControl()
