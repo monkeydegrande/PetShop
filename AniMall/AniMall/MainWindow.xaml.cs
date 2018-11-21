@@ -15,14 +15,23 @@ using System.Windows.Shapes;
 
 namespace AniMall
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
+            MainWindowVM MWVM = new MainWindowVM(this);
             InitializeComponent();
+            DataContext = MWVM;
+        }
+
+        // Ensures username and password fields are not empty
+        public bool LoginValidateEntries()
+        {
+            if (string.IsNullOrWhiteSpace(Login.userName.Text))
+            { return false; }
+            if (string.IsNullOrWhiteSpace(Login.pwBox.Password))
+            { return false; }
+            return true;
         }
     }
 }

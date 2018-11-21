@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AniMall"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Welcome to AniMall!" Height="467" Width="800">
     <Grid>
-        
+        <local:LoginControl x:Name="Login"/>
+        <local:SellerControl x:Name="Seller" Visibility="Hidden"/>
+        <local:BuyerControl x:Name="Buyer"  Visibility="Hidden"/>
+        <local:CreateControl x:Name="Create"  Visibility="Hidden"/>
     </Grid>
+
 </Window>
