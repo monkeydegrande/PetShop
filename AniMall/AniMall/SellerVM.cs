@@ -8,9 +8,14 @@ using System.Windows.Input;
 
 namespace AniMall
 {
+
     public class SellerVM : INotifyPropertyChanged
     {
-        public SellerVM() {}
+        MainWindowVM MVM;
+        public SellerVM(MainWindowVM mvm)
+        {
+            MVM = mvm;
+        }
 
         private void EditAnimal(object obj)
         {

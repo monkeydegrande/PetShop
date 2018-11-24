@@ -26,8 +26,24 @@
                 <Button  Height="25" Width="100" Content="View cart" Command="{Binding OpenCartCommand}"/>
             </StackPanel>
         </DataTemplate>
+<!-- Control Templates-->  
+        
+        
+        
+        
+<!--MENU-->
+        <DockPanel x:Key="Menu" LastChildFill="True" Height="28" VerticalAlignment="Top" Grid.ColumnSpan="10">
+            <Menu DockPanel.Dock="Top" Height="28" Width="Auto" Background="Gainsboro" >
+                <MenuItem  HorizontalAlignment="Left" Header="File" TabIndex="15" Background="Gainsboro" Width="95" FontFamily="Century Gothic" Height="25">
+                    <MenuItem Header="Exit" Command="{Binding ExitCommand}"/>
+                </MenuItem>
+                <Label x:Name ="NameTextBlock" Height="25" Width="210"  VerticalAlignment="Center" HorizontalContentAlignment="Right" FontFamily="Century Gothic"/>
+            </Menu>
+        </DockPanel>
 
-<!--Stack Style for Login-->
+
+
+        <!--Stack Style for Login-->
         <Style TargetType="StackPanel" x:Key="LoginStackStyle">
             <Setter Property="HorizontalAlignment" Value = "Center"/>
             <Setter Property="Orientation" Value ="Horizontal"/>

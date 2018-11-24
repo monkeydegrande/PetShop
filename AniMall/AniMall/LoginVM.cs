@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Xml.Serialization;
 
@@ -13,37 +14,80 @@ namespace AniMall
 {
     public class LoginVM : INotifyPropertyChanged
     {
-        Person User;
-        MainWindowVM MVM;
-        MainWindow MW;
-        ObservableCollection<Person> People;
-        public LoginVM(MainWindowVM mvm)
+        public Person User = new Person();
+
+        private string uName;
+        public string UName
         {
-            MW = mvm.MW;
-            MVM = mvm;
-            User = MVM.User;
-            People = MVM.People;
+            get { return uName; }
+            set
+            {
+                uName = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("UName"));
+            }
         }
 
-        //EVENT HANDLERS
+        private string pWord;
+        public string PWord
+        {
+            get { return pWord; }
+            set
+            {
+                pWord = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("PWord"));
+            }
+        }
 
 
+        public MainWindowVM MVM;
+        public ObservableCollection<Person> People;
+
+ //CONSTRUCTOR
+        public LoginVM(){ }
+        public LoginVM(MainWindowVM mvm)
+        {
+            MVM = mvm;
+            People = MVM.People;
+        }
+        // Ensures username and password fields are not empty
+        public bool ValidateEntries(PasswordBox pw)
+        {
+            if (string.IsNullOrWhiteSpace(UName) || string.IsNullOrWhiteSpace(pw.Password))
+            { return false; }
+            return true;
+        }
 
         //DELEGATES AND BUTTONCLICKS
 
         //Login
         private void LoginClick(object obj)
         {
-            if (MW.LoginValidateEntries())
+            PasswordBox pw = obj as PasswordBox;
+            //Ensure there were name and password entered
+            if (ValidateEntries(pw))
             {
-                Person loginTemp = People.FirstOrDefault(user => user.UserName == MW.Login.userName.Text);
-
-                if (loginTemp != null && loginTemp.Password == MW.Login.pwBox.Password)
+                //Ensure that obj is not null
+                if (obj != null)
                 {
-                    MW.Login.Visibility = Visibility.Hidden;
-                    if (loginTemp.AccountType == "Seller")
+                    pw = obj as PasswordBox;
+                    PWord = pw.Password;
+                }
+                //If username matches an entry in people, check if password matches.
+                User = People.FirstOrDefault(user => user.UserName == UName);
+
+                //If entries match set User, and go to proper view
+                if (User != null && User.Password == PWord)
+                {
+                    MVM.User = User;
+                    if (User.AccountType == "Seller")
                     {
-                        MW.Seller.Visibility = Visibility.Visible;
+                        Seller Seller = User as Seller;
+                        MVM.CurrentView = new SellerVM(MVM);
+                    }
+                    else
+                    {
+                        Buyer Buyer = User as Buyer;
+                        MVM.CurrentView = new BuyerVM(MVM, Buyer);
                     }
                 }
                 else
@@ -75,11 +119,10 @@ namespace AniMall
         //Create user
         private void CreateClick(object obj)
         {
-            MW.Login.Visibility = Visibility.Hidden;
-            MW.Create.Visibility = Visibility.Visible;
+            MVM.CurrentView = new CreateVM();
         }
 
-        public ICommand CreateUserCommand
+        public ICommand CreateCommand
         {
             get
             {
@@ -95,5 +138,27 @@ namespace AniMall
         DelegateCommand _createUserEvent;
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+
+        //Exit Application
+        private void ExitClick(object obj)
+        {
+            App.Current.Shutdown();
+        }
+
+        public ICommand ExitCommand
+        {
+            get
+            {
+                if (_exitEvent == null)
+                {
+                    _exitEvent = new DelegateCommand(ExitClick);
+                }
+
+                return _exitEvent;
+            }
+        }
+
+        DelegateCommand _exitEvent;
     }
 }

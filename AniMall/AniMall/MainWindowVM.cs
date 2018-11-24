@@ -17,38 +17,44 @@ namespace AniMall
 
 //PROPERTIES
         public MainWindow MW { get; set; }
-        public LoginVM LoginVM { get; set; }
-        public BuyerVM BuyerVM { get; set; }
-        public SellerVM SellerVM { get; set; }
-        public CartVM CartVM { get; set; }
-        public CreateVM CreateUserVM { get; set; }
+        private object currentView;
+
+        public object CurrentView
+        {
+            get { return currentView; }
+
+            set { currentView = value; OnPropertyChanged("CurrentView"); }
+
+        }
 
         public Person User;
-
-        //XML Serializer
-        static XmlSerializer Xmler = new XmlSerializer(typeof(ObservableCollection<Person>));
 
         //List of People
         public ObservableCollection<Person> People = new ObservableCollection<Person>();
 
         //Main csv data file
-        static string XmlPath = "people.xml";
+        static string PeoplePath = "people.xml";
+
+        //XML Serializer
+        static XmlSerializer Xmler = new XmlSerializer(typeof(ObservableCollection<Person>));
 
 //CONSTRUCTOR  
-        public MainWindowVM(MainWindow MW)
+        public MainWindowVM()
         {
-            LoginVM = new LoginVM(this);
+            ReadPeopleFile();
         }
+
+
 
 //READING AND WRITING FILE FUNCTIONS
         //Read in XML to get Students List 
         public void ReadPeopleFile()
         {
-            if (File.Exists(XmlPath))
+            if (File.Exists(PeoplePath))
             {
                 try
                 {
-                    using (FileStream ReadStream = new FileStream(XmlPath, FileMode.Open, FileAccess.Read))
+                    using (FileStream ReadStream = new FileStream(PeoplePath, FileMode.Open, FileAccess.Read))
                     {
                         People = Xmler.Deserialize(ReadStream)
                         as ObservableCollection<Person>;
@@ -59,14 +65,15 @@ namespace AniMall
                     Console.WriteLine("Unable to read XML file", ex.InnerException);
                     MessageBox.Show($"Unable to read XML file\nInnerException:{ ex.InnerException.Message}");
                 }
+
+                CurrentView = new LoginVM(this);
             }
             else
             {
                 if (MessageBox.Show("There are no users on file. Would you like to create one?",
                     "No Users File", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    MW.Login.Visibility = Visibility.Hidden;
-                    MW.Create.Visibility = Visibility.Visible;
+                    CurrentView = new CreateVM();
                 }
                 else
                 {
@@ -81,15 +88,15 @@ namespace AniMall
             //Ensure there isn't an empty Xml file
             if (People.Count == 0)
             {
-                if (File.Exists(XmlPath))
+                if (File.Exists(PeoplePath))
                 {
-                    File.Delete(XmlPath);
+                    File.Delete(PeoplePath);
                 }
                 MessageBox.Show("No data to save. Try adding a emp first.");
             }
             else
             {
-                using (FileStream fs = new FileStream(XmlPath, FileMode.Create, FileAccess.ReadWrite))
+                using (FileStream fs = new FileStream(PeoplePath, FileMode.Create, FileAccess.ReadWrite))
                 {
                     Xmler.Serialize(fs, People);
                 }
@@ -98,7 +105,10 @@ namespace AniMall
 
 
 //DELEGATES AND BUTTONCLICKS
-
+        private void OnPropertyChanged(string propName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
     }

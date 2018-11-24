@@ -6,11 +6,24 @@
         xmlns:local="clr-namespace:AniMall"
         mc:Ignorable="d"
         Title="Welcome to AniMall!" Height="467" Width="800">
-    <Grid>
-        <local:LoginControl x:Name="Login"/>
-        <local:SellerControl x:Name="Seller" Visibility="Hidden"/>
-        <local:BuyerControl x:Name="Buyer"  Visibility="Hidden"/>
-        <local:CreateControl x:Name="Create"  Visibility="Hidden"/>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:LoginVM}">
+            <local:LoginControl/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:BuyerVM}">
+            <local:BuyerControl/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:SellerVM}">
+            <local:SellerControl/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:CreateVM}">
+            <local:CreateControl/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:CartVM}">
+            <local:CartControl/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid Background="#FFEEEEEE" >
+        <ContentControl x:Name="Container" Content="{Binding CurrentView}"/>
     </Grid>
-
 </Window>

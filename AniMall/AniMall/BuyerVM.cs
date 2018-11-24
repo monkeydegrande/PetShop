@@ -10,14 +10,15 @@ namespace AniMall
 {
     public class BuyerVM : INotifyPropertyChanged
     {
-        private ObservableCollection<object> cartCont = new ObservableCollection<object>();
-        public ObservableCollection<object> CartCont
+        MainWindowVM MVM;
+
+        private Buyer user;
+        public Buyer User
         {
-            get { return cartCont; }
+            get { return user; }
             set
             {
-                cartCont = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("CartCont"));
+
             }
         }
 
@@ -55,8 +56,13 @@ namespace AniMall
             }
         }
 
-        public BuyerVM() { }
+//CONSTRUCTOR
+        public BuyerVM(MainWindowVM mvm, Buyer User)
+        {
+            MVM = mvm;
+        }
 
+//EVENTS AND DELEGATES
         private void AddToCartClicked(object obj)
         {
             int purchAmt = int.Parse(Qty);
@@ -83,10 +89,7 @@ namespace AniMall
 
         private void OpenCartClicked(object obj)
         {
-            CartVM shoppingCartVM = new CartVM(this);
-            Cart cart = new Cart();
-            cart.DataContext = shoppingCartVM;
-            cart.Show();
+
         }
 
         public ICommand OpenCartCommand

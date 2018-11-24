@@ -8,10 +8,14 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid Background="#FFEEEEEE">
+        <ContentControl>
+            <StaticResource ResourceKey="Menu"/>
+        </ContentControl>
+        
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="110" Grid.ColumnSpan="2" >
             <StackPanel Style = "{StaticResource LoginStackStyle}">
                 <Label Content="User Name:" Style="{StaticResource LoginLabelStyle}"/>
-                <TextBox x:Name="userName" Style="{StaticResource LoginTextBoxStyle}" TabIndex="0" ToolTip="Enter Username"/>
+                <TextBox x:Name="userName" Style="{StaticResource LoginTextBoxStyle}" Text="{Binding UName}" TabIndex="0" ToolTip="Enter Username"/>
             </StackPanel>
 
             <StackPanel Style = "{StaticResource LoginStackStyle}">
@@ -20,8 +24,8 @@
             </StackPanel>
 
             <DockPanel HorizontalAlignment="Center">
-                <Button x:Name="loginButton" Style="{StaticResource LoginButtonStyle}" DockPanel.Dock="Left" Content="Login" Command="{Binding LoginVM.LoginCommand}" TabIndex="2" ToolTip="Click here to login"/>
-                <Button x:Name="createUserButton" Style="{StaticResource LoginButtonStyle}" DockPanel.Dock="Right" Content="Create User" Command="{Binding LoginVM.CreateCommand}" TabIndex="3" ToolTip="New users, click here to create an account"/>
+                <Button x:Name="loginButton" Style="{StaticResource LoginButtonStyle}" DockPanel.Dock="Left" Content="Login" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=pwBox}" TabIndex="2" ToolTip="Click here to login"/>
+                <Button x:Name="createUserButton" Style="{StaticResource LoginButtonStyle}" DockPanel.Dock="Right" Content="Create User" Command="{Binding CreateCommand}" CommandParameter="{Binding}"  TabIndex="3" ToolTip="New users, click here to create an account"/>
             </DockPanel>
         </StackPanel>
     </Grid>

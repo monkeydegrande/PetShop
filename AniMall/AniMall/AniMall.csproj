@@ -57,14 +57,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Buyer.cs" />
+    <Compile Include="CartControl.xaml.cs">
+      <DependentUpon>CartControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CreateControl.xaml.cs">
       <DependentUpon>CreateControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Seller.cs" />
     <Compile Include="SellerControl.xaml.cs">
       <DependentUpon>SellerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CartVM.cs" />
     <Compile Include="SellerVM.cs" />
+    <Page Include="CartControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CreateControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -74,10 +83,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="BuyerControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
-    </Page>
-    <Page Include="CartControl.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
@@ -99,9 +104,6 @@
       <DependentUpon>BuyerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="BuyerVM.cs" />
-    <Compile Include="CartControl.xaml.cs">
-      <DependentUpon>CartControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CC.cs" />
     <Compile Include="CreateVM.cs" />
     <Compile Include="DelegateCommand.cs" />

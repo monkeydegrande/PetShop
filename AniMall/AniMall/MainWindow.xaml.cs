@@ -19,19 +19,9 @@ namespace AniMall
     {
         public MainWindow()
         {
-            MainWindowVM MVM = new MainWindowVM(this);
+            MainWindowVM MVM = new MainWindowVM();
             InitializeComponent();
             DataContext = MVM;
-        }
-
-        // Ensures username and password fields are not empty
-        public bool LoginValidateEntries()
-        {
-            if (string.IsNullOrWhiteSpace(Login.userName.Text))
-            { return false; }
-            if (string.IsNullOrWhiteSpace(Login.pwBox.Password))
-            { return false; }
-            return true;
         }
     }
 }
