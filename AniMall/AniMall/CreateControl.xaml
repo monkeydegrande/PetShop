@@ -73,7 +73,7 @@
                            Height="26"
                            Width="110" 
                            FontFamily="Century Gothic"/>
-                    <PasswordBox x:Name="PasswordTextBox"
+                    <PasswordBox x:Name="Password"
                                  Height="25"
                                  Width="110"
                                  TabIndex="2"
@@ -282,7 +282,7 @@
                             <ComboBox x:Name="PaymentComboBox"
                                       ItemsSource="{Binding Cards}" 
                                       Validation.Error="Validation_Error"
-                                      SelectedItem="{Binding Type, 
+                                      SelectedItem="{Binding PayType, 
                                                     UpdateSourceTrigger=LostFocus,
                                                     ValidatesOnDataErrors=True,
                                                     NotifyOnValidationError=True}" 
@@ -403,7 +403,8 @@
                             Margin="39,0,0,0" 
                             VerticalAlignment="Bottom" 
                             TabIndex="16" 
-                            Command="{Binding AddUserCommand}"/>
+                            Command="{Binding AddUserCommand}"
+                            CommandParameter="{Binding ElementName=Password}"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

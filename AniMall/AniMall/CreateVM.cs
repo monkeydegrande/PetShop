@@ -19,7 +19,7 @@ namespace AniMall
         #region Properties
 
         MainWindowVM MVM;
-        private bool first = true;
+        private int first = 0;
 
         Thickness BThickTwo = new Thickness(2), BThickZero = new Thickness(0);
 
@@ -160,15 +160,14 @@ namespace AniMall
             }
         }
 
-
-        private string cCtype;
-        public string CCType
+        private string payType;
+        public string PayType
         {
-            get { return cCtype; }
+            get { return payType; }
             set
             {
-                cCtype = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("CCType"));
+                payType = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("PayType"));
             }
         }
 
@@ -219,7 +218,7 @@ namespace AniMall
         public ObservableCollection<Animal> CartCont { get; set; }
 
         //Add Account types to ComboBox
-        private List<string> accounts = new List<string>(new string[] { "Buyer", "Seller" });
+        private List<string> accounts = new List<string>(new string[] {"", "Buyer", "Seller" });
         public List<string> Accounts
         {
             get { return accounts; }
@@ -259,36 +258,110 @@ namespace AniMall
 //CONSTRUCTOR
         public CreateVM(MainWindowVM mvm)
         {
+            People = mvm.People;
             MVM = mvm;
-            UserName = "";
-            Password = "";
-            FirstName = "";
-            LastName = "";
-            HouseNumber = "";
-            StreetName = "";
-            City = "";
-            State = "";
-            Zip = "";
-            Email = "";
-            CCType = "";
-            CardNumber = "";
-            ExpMo = "";
-            ExpYr = "";
-            CVV = "";
+            accountType = "";
+            userName = "";
+            password = "";
+            firstName = "";
+            lastName = "";
+            houseNumber = "";
+            streetName = "";
+            city = "";
+            state = "";
+            zip = "";
+            email = "";
+            payType = "";
+            cardNumber = "";
+            expMo = "";
+            expYr = "";
+            cVV = "";
         }
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
+        private void TripValidation()
+        {
+            if (AccountType == "")
+                AccountType = "";
+            if(UserName == "")
+                UserName = "";
+            if (Password == "")
+                Password = "";
+            if (FirstName == "")
+                FirstName = "";
+            if (LastName == "")
+                LastName = "";
+            if (HouseNumber == "")
+                HouseNumber = "";
+            if (StreetName == "")
+                StreetName = "";
+            if (City == "")
+                City = "";
+            if (State == "")
+                State = "";
+            if (Zip == "")
+                Zip = "";
+            if (Email == "")
+                Email = "";
+            if (PayType == "")
+                PayType = "";
+            if (CardNumber == "")
+                CardNumber = "";
+            if (ExpMo == "")
+                ExpMo = "";
+            if (ExpYr == "")
+                ExpYr = "";
+            if (CVV == "")
+                CVV = "";
+        }
 
         private void AddUserClick(object obj)
         {
-            Person temp = People.Where(x => x.UserName == User.UserName).FirstOrDefault();
-            if (temp != null)
+            PasswordBox pw = obj as PasswordBox;
+            Password = pw.Password;
+
+            if(CreateControl._noOfErrorsOnScreen==0 &&
+            AccountType != "" &&
+            UserName != "" &&
+            Password != "" &&
+            FirstName != "" &&
+            LastName != "" &&
+            HouseNumber != "" &&
+            StreetName != "" &&
+            City != "" &&
+            State != "" &&
+            Zip != "" &&
+            Email != "" &&
+            PayType != "" &&
+            CardNumber != "" &&
+            ExpMo != "" &&
+            ExpYr != "" &&
+            CVV != "")
             {
-                MessageBox.Show("User exists already, please try a different user name.");
+                Person temp = new Person();
+                if(People.Count > 0)
+                {
+                    temp = People.Where(x => x.UserName == UserName).FirstOrDefault();
+                    if (temp != null)
+                    {
+                        MessageBox.Show("User exists already, please try a different user name.");
+                    }
+                    else
+                    {
+                        People.Add(User);
+                        MVM.WriteXmlFile(People);
+                        MessageBox.Show("Account Created.");
+                    }
+                }
+                People.Add(User);
+                MVM.WriteXmlFile(People);
+                MessageBox.Show("Account Created.");
             }
-            People.Add(User);
-            MVM.WriteXmlFile(People);
-            MessageBox.Show("Account Created.");
+            else
+            {
+                MessageBox.Show("Invalid or incomplete information provided");
+                TripValidation();
+            }
         }
 
         public ICommand AddUserCommand
@@ -335,7 +408,7 @@ namespace AniMall
             get
             {
                 string result = null;
-                if (!first)
+                if (first>=15)
                 {
                     //Account Info Validation
                     if (columnName == "AccountType")
@@ -405,9 +478,9 @@ namespace AniMall
                             result = "Please enter a valid email address";
                     }
 
-                    if (columnName == "Type")
+                    if (columnName == "PayType")
                     {
-                        if (string.IsNullOrEmpty(CCType))
+                        if (string.IsNullOrEmpty(PayType))
                             result = "Please pick a type of payment";
                     }
 
@@ -435,7 +508,7 @@ namespace AniMall
                             result = "Please enter a valid CVV";
                     }
                 }
-                first = false;
+                first++;
                 return result;
             }
         }

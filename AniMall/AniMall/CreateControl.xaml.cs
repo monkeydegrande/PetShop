@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace AniMall
 {
     public partial class CreateControl : UserControl
     {
-        private int _noOfErrorsOnScreen = 0;
+        public static int _noOfErrorsOnScreen = 0;
 
         public CreateControl()
         {
