@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AniMall"
         mc:Ignorable="d"
-        Title="Welcome to AniMall!" Height="467" Width="800">
+        Title="Welcome to AniMall!" Height="467" Width="625">
     <Window.Resources>
         <DataTemplate DataType="{x:Type local:LoginVM}">
             <local:LoginControl/>

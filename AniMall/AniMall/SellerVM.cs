@@ -11,9 +11,11 @@ namespace AniMall
 
     public class SellerVM : INotifyPropertyChanged
     {
+        Person User;
         MainWindowVM MVM;
-        public SellerVM(MainWindowVM mvm)
+        public SellerVM(MainWindowVM mvm, Person user)
         {
+            User = user;
             MVM = mvm;
         }
 

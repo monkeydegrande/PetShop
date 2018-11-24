@@ -12,8 +12,8 @@ namespace AniMall
     {
         MainWindowVM MVM;
 
-        private Buyer user;
-        public Buyer User
+        private Person user;
+        public Person User
         {
             get { return user; }
             set
@@ -57,7 +57,7 @@ namespace AniMall
         }
 
 //CONSTRUCTOR
-        public BuyerVM(MainWindowVM mvm, Buyer User)
+        public BuyerVM(MainWindowVM mvm, Person User)
         {
             MVM = mvm;
         }

@@ -1,44 +1,94 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace AniMall
+namespace AniMall 
 {
     [XmlRoot(ElementName = "Address")]
-    public class Address
+    public class Address : INotifyPropertyChanged
     {
-        [XmlElement(DataType = "int", ElementName = "HouseNumber")]
-        public int HouseNumber { get; set; }
+        [XmlIgnore]
+        private string houseNumber;
+        [XmlElement(DataType = "string", ElementName = "HouseNumber")]
+        public string HouseNumber
+        {
+            get { return houseNumber; }
+            set
+            {
 
+                houseNumber = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("HouseNumber"));
+            }
+        }
+
+        [XmlIgnore]
+        private string streetName;
         [XmlElement(DataType = "string", ElementName = "StreetName")]
-        public string StreetName { get; set; }
+        public string StreetName
+        {
+            get { return streetName; }
+            set
+            {
+                streetName = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("StreetName"));
+            }
+        }
 
+        [XmlIgnore]
+        private string city;
         [XmlElement(DataType = "string", ElementName = "City")]
-        public string City { get; set; }
+        public string City
+        {
+            get { return city; }
+            set
+            {
+                city = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("City"));
+            }
+        }
 
+        [XmlIgnore]
+        private string state;
         [XmlElement(DataType = "string", ElementName = "State")]
-        public string State { get; set; }
+        public string State
+        {
+            get { return state; }
+            set
+            {
+                state = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("State"));
+            }
+        }
 
-        [XmlElement(DataType = "int", ElementName = "ZipCode")]
-        public int ZipCode { get; set; }
+        [XmlIgnore]
+        private string zip;
+        [XmlElement(DataType = "string", ElementName = "Zip")]
+        public string Zip
+        {
+            get { return zip; }
+            set
+            {
+                zip = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Zip"));
+            }
+        }
 
         public Address() { }
 
-        public Address(
-            int houseNumber,
-            string streetName,
-            string city,
-            string state,
-            int zipCode)
+        public Address(string hNumber, string sName, string cityName, string st, string zipCode)
         {
-            HouseNumber = houseNumber;
-            StreetName = streetName;
-            City = city;
-            State = state;
-            ZipCode = zipCode;
+            houseNumber = hNumber;
+            StreetName = sName;
+            City = cityName;
+            State = st;
+            Zip = zipCode;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
     }
 }

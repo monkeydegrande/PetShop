@@ -57,14 +57,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Buyer.cs" />
     <Compile Include="CartControl.xaml.cs">
       <DependentUpon>CartControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="CreateControl.xaml.cs">
       <DependentUpon>CreateControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Seller.cs" />
     <Compile Include="SellerControl.xaml.cs">
       <DependentUpon>SellerControl.xaml</DependentUpon>
     </Compile>

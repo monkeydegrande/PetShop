@@ -73,7 +73,7 @@ namespace AniMall
                 if (MessageBox.Show("There are no users on file. Would you like to create one?",
                     "No Users File", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    CurrentView = new CreateVM();
+                    CurrentView = new CreateVM(this);
                 }
                 else
                 {
@@ -83,7 +83,7 @@ namespace AniMall
         }
 
         //Write to Xml file
-        static public void WriteXmlFile(ObservableCollection<Person> People)
+        public void WriteXmlFile(ObservableCollection<Person> People)
         {
             //Ensure there isn't an empty Xml file
             if (People.Count == 0)

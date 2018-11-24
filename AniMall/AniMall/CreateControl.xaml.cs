@@ -17,9 +17,18 @@ namespace AniMall
 {
     public partial class CreateControl : UserControl
     {
+        private int _noOfErrorsOnScreen = 0;
+
         public CreateControl()
         {
             InitializeComponent();
+        }
+        private void Validation_Error(object sender, ValidationErrorEventArgs e)
+        {
+            if (e.Action == ValidationErrorEventAction.Added)
+                _noOfErrorsOnScreen++;
+            else
+                _noOfErrorsOnScreen--;
         }
     }
 }

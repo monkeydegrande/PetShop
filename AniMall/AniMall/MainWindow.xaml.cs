@@ -17,11 +17,14 @@ namespace AniMall
 {
     public partial class MainWindow : Window
     {
+
+
         public MainWindow()
         {
             MainWindowVM MVM = new MainWindowVM();
             InitializeComponent();
             DataContext = MVM;
         }
+
     }
 }

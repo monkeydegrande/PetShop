@@ -4,88 +4,163 @@
              xmlns:local="clr-namespace:AniMall"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-<!--Data Template for products-->
+<!-- Data Template for products -->
         <DataTemplate x:Key="ProductTemplate">
             <StackPanel Orientation="Horizontal">
-                <Image Source="{Binding ImagePath}" Margin="5" Width="75" Height="60"/>
+                <Image Source="{Binding ImagePath}" 
+                       Margin="5" 
+                       Width="75" 
+                       Height="60"/>
                 <StackPanel>
-                    <TextBlock Text="{Binding Name}" FontFamily="Arial" FontSize="14" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding Description}" Width="200" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Price}" Width="200" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Stock}" Width="200" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Name}" 
+                               FontFamily="Arial" 
+                               FontSize="14" 
+                               FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Description}"
+                               Width="200"
+                               TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Price}"
+                               Width="200"
+                               TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Stock}"
+                               Width="200"
+                               TextWrapping="Wrap"/>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="AddToCartDisplay">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label Content="Quantity" Height="25" Margin="5"/>
-                <TextBox Text="{Binding Quantity}" Height="25" Width="50" Margin="5"/>
-                <Button Height="25" Width="100" Content="Add To Cart" Margin="5" Command="{Binding AddToCartCommand}" 
-                    CommandParameter="{Binding ElementName=TabCollection, Path=Items}"/>
-                <Button  Height="25" Width="100" Content="View cart" Command="{Binding OpenCartCommand}"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Label Content="Quantity"
+                       Height="25" 
+                       Margin="5"/>
+                <TextBox Text="{Binding Quantity}"
+                         Height="25" 
+                         Width="50"
+                         Margin="5"/>
+                <Button Height="25"
+                        Width="100" 
+                        Content="Add To Cart" 
+                        Margin="5"
+                        Command="{Binding AddToCartCommand}" 
+                        CommandParameter="{Binding ElementName=TabCollection, 
+                                            Path=Items}"/>
+                <Button  Height="25" 
+                         Width="100" 
+                         Content="View cart" 
+                         Command="{Binding OpenCartCommand}"/>
             </StackPanel>
         </DataTemplate>
-<!-- Control Templates-->  
         
         
-        
-        
-<!--MENU-->
-        <DockPanel x:Key="Menu" LastChildFill="True" Height="28" VerticalAlignment="Top" Grid.ColumnSpan="10">
-            <Menu DockPanel.Dock="Top" Height="28" Width="Auto" Background="Gainsboro" >
-                <MenuItem  HorizontalAlignment="Left" Header="File" TabIndex="15" Background="Gainsboro" Width="95" FontFamily="Century Gothic" Height="25">
-                    <MenuItem Header="Exit" Command="{Binding ExitCommand}"/>
+<!-- Control Templates-->   
+        <!--MENU-->
+        <DockPanel x:Key="Menu" 
+                   LastChildFill="True" 
+                   Height="28" 
+                   VerticalAlignment="Top" 
+                   Grid.ColumnSpan="10">
+            <Menu DockPanel.Dock="Top"
+                  Height="28" 
+                  Width="Auto" 
+                  Background="Gainsboro" >
+                <MenuItem  HorizontalAlignment="Left"
+                           Header="File" 
+                           TabIndex="15" 
+                           Background="Gainsboro" 
+                           FontFamily="Century Gothic"
+                           Height="25">
+                    <MenuItem Header="Exit" 
+                              Command="{Binding ExitCommand}"/>
                 </MenuItem>
-                <Label x:Name ="NameTextBlock" Height="25" Width="210"  VerticalAlignment="Center" HorizontalContentAlignment="Right" FontFamily="Century Gothic"/>
+                <Label x:Name ="NameTextBlock" 
+                       Content="{Binding User.FName}" 
+                       Height="25" 
+                       Width="210"  
+                       VerticalAlignment="Center" 
+                       HorizontalContentAlignment="Right" 
+                       FontFamily="Century Gothic"/>
             </Menu>
         </DockPanel>
 
 
-
-        <!--Stack Style for Login-->
-        <Style TargetType="StackPanel" x:Key="LoginStackStyle">
-            <Setter Property="HorizontalAlignment" Value = "Center"/>
-            <Setter Property="Orientation" Value ="Horizontal"/>
-            <Setter Property="Margin" Value="0,2"/>
+<!-- Styles -->
+        <!-- Error -->
+         
+        <!-- Stack Style for Login -->
+        <Style TargetType="StackPanel"
+               x:Key="LoginStackStyle">
+            <Setter Property="HorizontalAlignment" 
+                    Value = "Center"/>
+            <Setter Property="Orientation" 
+                    Value ="Horizontal"/>
+            <Setter Property="Margin"
+                    Value="0,2"/>
         </Style>
 
-<!--Label style for login-->
-        <Style TargetType="Label" x:Key="LoginLabelStyle">
-            <Setter Property="HorizontalAlignment" Value = "Right"/>
-            <Setter Property="Height" Value ="30"/>
-            <Setter Property="Width" Value="90"/>
-            <Setter Property="FontFamily" Value="Century Gothic"/>
-            <Setter Property="FontSize" Value="14"/>
+<!-- Label Style for login -->
+        <Style TargetType="Label"
+               x:Key="LoginLabelStyle">
+            <Setter Property="HorizontalAlignment" 
+                    Value = "Right"/>
+            <Setter Property="Height"
+                    Value ="30"/>
+            <Setter Property="Width"
+                    Value="90"/>
+            <Setter Property="FontFamily" 
+                    Value="Century Gothic"/>
+            <Setter Property="FontSize" 
+                    Value="14"/>
         </Style>
         
-<!--TextBox Style for login-->
-        <Style TargetType="TextBox" x:Key="LoginTextBoxStyle">
-            <Setter Property="VerticalContentAlignment" Value = "Center"/>
-            <Setter Property="Height" Value ="30"/>
-            <Setter Property="Width" Value="120"/>
-            <Setter Property="FontFamily" Value="Century Gothic"/>
-            <Setter Property="FontSize" Value="14"/>
+<!-- TextBox Style for login -->
+        <Style TargetType="TextBox"
+               x:Key="LoginTextBoxStyle">
+            <Setter Property="VerticalContentAlignment"
+                    Value = "Center"/>
+            <Setter Property="Height" 
+                    Value ="30"/>
+            <Setter Property="Width" 
+                    Value="120"/>
+            <Setter Property="FontFamily" 
+                    Value="Century Gothic"/>
+            <Setter Property="FontSize" 
+                    Value="14"/>
         </Style>
         
-<!--PassBox Style for login-->
-        <Style TargetType="PasswordBox" x:Key="LoginPasswordBoxStyle">
-            <Setter Property="VerticalContentAlignment" Value = "Center"/>
-            <Setter Property="Height" Value ="30"/>
-            <Setter Property="Width" Value="120"/>
-            <Setter Property="FontFamily" Value="Century Gothic"/>
-            <Setter Property="FontSize" Value="14"/>
+<!-- PassBox Style for login -->
+        <Style TargetType="PasswordBox" 
+               x:Key="LoginPasswordBoxStyle">
+            <Setter Property="VerticalContentAlignment" 
+                    Value = "Center"/>
+            <Setter Property="Height"
+                    Value ="30"/>
+            <Setter Property="Width" 
+                    Value="120"/>
+            <Setter Property="FontFamily" 
+                    Value="Century Gothic"/>
+            <Setter Property="FontSize" 
+                    Value="14"/>
         </Style>
         
-<!--Button Style for login-->
-        <Style TargetType="Button" x:Key="LoginButtonStyle">
-            <Setter Property="VerticalContentAlignment" Value = "Center"/>
-            <Setter Property="Height" Value ="30"/>
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="FontFamily" Value="Century Gothic"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Margin" Value="5, 5, 5, 0"/>
+<!-- Button Style for login -->
+        <Style TargetType="Button"
+               x:Key="LoginButtonStyle">
+            <Setter Property="VerticalContentAlignment"
+                    Value = "Center"/>
+            <Setter Property="Height" 
+                    Value ="30"/>
+            <Setter Property="Width" 
+                    Value="100"/>
+            <Setter Property="FontFamily" 
+                    Value="Century Gothic"/>
+            <Setter Property="FontSize" 
+                    Value="14"/>
+            <Setter Property="Background" 
+                    Value="White"/>
+            <Setter Property="Margin" 
+                    Value="5, 5, 5, 0"/>
         </Style>
 
     </Application.Resources>

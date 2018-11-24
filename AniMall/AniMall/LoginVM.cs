@@ -81,13 +81,11 @@ namespace AniMall
                     MVM.User = User;
                     if (User.AccountType == "Seller")
                     {
-                        Seller Seller = User as Seller;
-                        MVM.CurrentView = new SellerVM(MVM);
+                        MVM.CurrentView = new SellerVM(MVM, User);
                     }
                     else
                     {
-                        Buyer Buyer = User as Buyer;
-                        MVM.CurrentView = new BuyerVM(MVM, Buyer);
+                        MVM.CurrentView = new BuyerVM(MVM, User);
                     }
                 }
                 else
@@ -119,7 +117,7 @@ namespace AniMall
         //Create user
         private void CreateClick(object obj)
         {
-            MVM.CurrentView = new CreateVM();
+            MVM.CurrentView = new CreateVM(MVM);
         }
 
         public ICommand CreateCommand

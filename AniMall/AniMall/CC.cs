@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,32 +9,84 @@ using System.Xml.Serialization;
 namespace AniMall
 {
     [XmlRoot(ElementName = "CC")]
-    public class CC
+    public class CC : INotifyPropertyChanged
     {
+        [XmlIgnore]
+        private string type;
         [XmlElement(DataType = "string", ElementName = "Type")]
-        public string Type { get; set; }
+        public string Type
+        {
+            get { return type; }
+            set
+            {
+                type = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Type"));
+            }
+        }
 
-        [XmlElement(DataType = "long", ElementName = "CardNumber")]
-        public long CardNumber { get; set; }
+        [XmlIgnore]
+        private string cardNumber;
+        [XmlElement(DataType = "string", ElementName = "CardNumber")]
+        public string CardNumber
+        {
+            get { return cardNumber; }
+            set
+            {
+                cardNumber = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("CardNumber"));
+            }
+        }
 
-        [XmlElement(DataType = "int", ElementName = "ExpMo")]
-        public int ExpMo { get; set; }
+        [XmlIgnore]
+        private string expMo;
+        [XmlElement(DataType = "string", ElementName = "ExpMo")]
+        public string ExpMo
+        {
+            get { return expMo; }
+            set
+            {
+                expMo = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("ExpMo"));
+            }
+        }
 
-        [XmlElement(DataType = "int", ElementName = "ExpYr")]
-        public int ExpYr { get; set; }
+        [XmlIgnore]
+        private string expYr;
+        [XmlElement(DataType = "string", ElementName = "ExpYr")]
+        public string ExpYr
+        {
+            get { return expYr; }
+            set
+            {
+                expYr = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("ExpYr"));
+            }
+        }
 
-        [XmlElement(DataType = "int", ElementName = "CVV")]
-        public int CVV { get; set; }
+        [XmlIgnore]
+        private string cVV;
+        [XmlElement(DataType = "string", ElementName = "CVV")]
+        public string CVV
+        {
+            get { return cVV; }
+            set
+            {
+                cVV = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("CVV"));
+            }
+        }
 
         public CC() { }
 
-        public CC(string type, long cardNumber, int expMo, int expYr, int cvv)
+        public CC(string t, string cNumber, string eMo, string eYr, string c)
         {
-            Type = type;
-            CardNumber = cardNumber;
-            ExpMo = ExpMo;
-            ExpYr = ExpYr;
-            CVV = cvv;
+            type = t;
+            cardNumber = cNumber;
+            expMo = eMo;
+            expYr = eYr;
+            cVV = c;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
     }
 }
