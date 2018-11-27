@@ -17,27 +17,6 @@ namespace AniMall
     public class Person : INotifyPropertyChanged
     {
         #region Properties
-        //Regex patterns for input validation
-        [XmlIgnore]
-        string UNameRegex = @"^.{4,10}$";
-        [XmlIgnore]
-        string NameRegex = @"^[a-zA-Z]+[']?[ ]?[a-zA-Z]*$";
-        [XmlIgnore]
-        string PasswordRegex = @".{8,20}";
-        [XmlIgnore]
-        string EmailRegex = @"^([\w-\.]+)@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|\d{1,3})(\]?)$";
-        [XmlIgnore]
-        string NumberRegex = @"^\d+$";
-        [XmlIgnore]
-        string CityRegex = @"^[a-zA-Z]+['.']?[' ']?\s?[a-zA-Z]*$";
-        [XmlIgnore]
-        string ZipRegex = @"^\d{5}$";
-        [XmlIgnore]
-        string CardRegex = @"^\d{16}$";
-        [XmlIgnore]
-        string CVVRegex = @"^\d{3}$";
-
-
         [XmlIgnore]
         private string accountType;
         [XmlElement(ElementName = "AccountType")]
@@ -150,7 +129,7 @@ namespace AniMall
         /**CONSTRUCTORS**/
         public Person() { }
 
-        public Person(string aType, string uName, string pword, string first, string last, Address address, int schoolID, string emailAddy, CC cc)
+        public Person(string aType, string uName, string pword, string first, string last, Address address, string emailAddy, CC cc)
         {
             accountType = aType;
             userName = uName;

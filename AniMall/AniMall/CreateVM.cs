@@ -19,19 +19,22 @@ namespace AniMall
         #region Properties
 
         MainWindowVM MVM;
-        private int first = 0;
+
+        private int First = 0;
 
         Thickness BThickTwo = new Thickness(2), BThickZero = new Thickness(0);
 
         public Person User = new Person();
+        private Address Address;
+        private CC CC;
 
         public ObservableCollection<Person> People { get; set; }
 
         //Regex patterns for input validation
 
-        string UNameRegex = @"^.{4,15}$";
+        string UNameRegex = @"^.{1,15}$";
+        string PasswordRegex = @"^.{8,15}$";
         string NameRegex = @"^[a-zA-Z]+$";
-        string PasswordRegex = @".{8,15}";
         string EmailRegex = @"^([\w-\.]+)@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|\d{1,3})(\]?)$";
         string NumberRegex = @"^\d+$";
         string CityRegex = @"^[a-zA-Z]+['.']?[' ']?\s?[a-zA-Z]*$";
@@ -61,14 +64,14 @@ namespace AniMall
             }
         }
 
-        private string password;
-        public string Password
+        private string boundPassword;
+        public string BoundPassword
         {
-            get { return password; }
+            get { return boundPassword; }
             set
             {
-                password = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Password"));
+                boundPassword = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("BoundPassword"));
             }
         }
 
@@ -216,7 +219,9 @@ namespace AniMall
         }
 
         public ObservableCollection<Animal> CartCont { get; set; }
+        #endregion
 
+        #region Populate ComboBoxes
         //Add Account types to ComboBox
         private List<string> accounts = new List<string>(new string[] {"", "Buyer", "Seller" });
         public List<string> Accounts
@@ -262,7 +267,7 @@ namespace AniMall
             MVM = mvm;
             accountType = "";
             userName = "";
-            password = "";
+            boundPassword = "";
             firstName = "";
             lastName = "";
             houseNumber = "";
@@ -278,15 +283,36 @@ namespace AniMall
             cVV = "";
         }
 
-        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+//METHODS
+        //Add Person to People
+        private void AddPerson()
+        {
+            Address = new Address(HouseNumber, StreetName, City, State, Zip);
+            CC = new CC(PayType, CardNumber, ExpMo, ExpYr, CVV);
+            User = new Person(AccountType,
+            userName,
+            boundPassword,
+            firstName,
+            lastName,
+            Address,
+            email,
+            CC);
+            People.Add(User);
+            MVM.WriteXmlFile(People);
+            ClearInfo();
+            First = 0;
+            MessageBox.Show("Account Created.");
+        }
+
+        //Trips Validation Error on items that were neglected
         private void TripValidation()
         {
             if (AccountType == "")
                 AccountType = "";
             if(UserName == "")
                 UserName = "";
-            if (Password == "")
-                Password = "";
+            if (boundPassword == "")
+                boundPassword = "";
             if (FirstName == "")
                 FirstName = "";
             if (LastName == "")
@@ -315,31 +341,52 @@ namespace AniMall
                 CVV = "";
         }
 
+        private void ClearInfo()
+        {
+                accountType = "";
+                userName = "";
+                boundPassword = "";
+                firstName = "";
+                lastName = "";
+                houseNumber = "";
+                streetName = "";
+                city = "";
+                state = "";
+                zip = "";
+                email = "";
+                payType = "";
+                cardNumber = "";
+                expMo = "";
+                expYr = "";
+                cVV = "";
+        }
+
+//COMMAND HANDLERS
+
+        //Add User Click
         private void AddUserClick(object obj)
         {
-            PasswordBox pw = obj as PasswordBox;
-            Password = pw.Password;
 
-            if(CreateControl._noOfErrorsOnScreen==0 &&
-            AccountType != "" &&
-            UserName != "" &&
-            Password != "" &&
-            FirstName != "" &&
-            LastName != "" &&
-            HouseNumber != "" &&
-            StreetName != "" &&
-            City != "" &&
-            State != "" &&
-            Zip != "" &&
-            Email != "" &&
-            PayType != "" &&
-            CardNumber != "" &&
-            ExpMo != "" &&
-            ExpYr != "" &&
-            CVV != "")
+            if (CreateControl._noOfErrorsOnScreen==0 &&
+            accountType != "" &&
+            userName != "" &&
+            boundPassword != "" &&
+            firstName != "" &&
+            lastName != "" &&
+            houseNumber != "" &&
+            streetName != "" &&
+            city != "" &&
+            state != "" &&
+            zip != "" &&
+            email != "" &&
+            payType != "" &&
+            cardNumber != "" &&
+            expMo != "" &&
+            expYr != "" &&
+            cVV != "")
             {
                 Person temp = new Person();
-                if(People.Count > 0)
+                if (People.Count > 0)
                 {
                     temp = People.Where(x => x.UserName == UserName).FirstOrDefault();
                     if (temp != null)
@@ -348,14 +395,15 @@ namespace AniMall
                     }
                     else
                     {
-                        People.Add(User);
-                        MVM.WriteXmlFile(People);
-                        MessageBox.Show("Account Created.");
+                        AddPerson();
+                        MVM.CurrentView = new CreateVM(MVM);
                     }
                 }
-                People.Add(User);
-                MVM.WriteXmlFile(People);
-                MessageBox.Show("Account Created.");
+                else
+                {
+                    AddPerson();
+                    MVM.CurrentView = new CreateVM(MVM);
+                }
             }
             else
             {
@@ -379,7 +427,7 @@ namespace AniMall
 
         DelegateCommand _addEvent;
 
-        //Exit Application
+        //Menu Exit Click
         private void ExitClick(object obj)
         {
             App.Current.Shutdown();
@@ -397,6 +445,12 @@ namespace AniMall
                 return _exitEvent;
             }
         }
+
+        DelegateCommand _exitEvent;
+
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+//VALIDATION
         #region IDataErrorInfo Members
         public string Error
         {
@@ -408,7 +462,7 @@ namespace AniMall
             get
             {
                 string result = null;
-                if (first>=15)
+                if (First >= 15)
                 {
                     //Account Info Validation
                     if (columnName == "AccountType")
@@ -423,12 +477,11 @@ namespace AniMall
                             result = "Please enter a user name";
                     }
 
-                    if (columnName == "Password")
+                    if (columnName == "BoundPassword")
                     {
-                        if (!Regex.IsMatch(Password, PasswordRegex))
-                            result = "Please enter a password";
+                        if (!Regex.IsMatch(BoundPassword, PasswordRegex))
+                            MessageBox.Show("Please enter a valid password");
                     }
-
                     //User Info Validation
                     if (columnName == "FirstName")
                     {
@@ -508,13 +561,10 @@ namespace AniMall
                             result = "Please enter a valid CVV";
                     }
                 }
-                first++;
+                First++;
                 return result;
             }
         }
         #endregion
-
-
-        DelegateCommand _exitEvent;
     }
 }

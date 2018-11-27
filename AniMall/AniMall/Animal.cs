@@ -16,8 +16,8 @@ namespace AniMall
         [XmlElement(DataType = "string", ElementName = "Description")]
         public string Description { get; set; }
 
-        [XmlElement(DataType = "double", ElementName = "Price")]
-        public double Price { get; set; }
+        [XmlElement(DataType = "string", ElementName = "Price")]
+        public string Price { get; set; }
 
         [XmlElement(DataType = "int", ElementName = "Stock")]
         public int Stock { get; set; }
@@ -30,7 +30,7 @@ namespace AniMall
 
         public Animal() { }
 
-        public Animal(string name, string description, double price, int stock, string imagePath)
+        public Animal(string name, string description, string price, int stock, string imagePath)
         {
             Name = name;
             Description = description;

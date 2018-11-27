@@ -12,13 +12,25 @@ namespace AniMall
     {
         MainWindowVM MVM;
 
+        private ObservableCollection<Animal> products;
+        public ObservableCollection<Animal> Products
+        {
+            get { return products; }
+            set
+            {
+                products = value;
+            }
+        }
+
+        #region Properties
+
         private Person user;
         public Person User
         {
             get { return user; }
             set
             {
-
+                user = value;
             }
         }
 
@@ -55,11 +67,14 @@ namespace AniMall
                 PropertyChanged(this, new PropertyChangedEventArgs("Qty"));
             }
         }
+        #endregion
 
 //CONSTRUCTOR
-        public BuyerVM(MainWindowVM mvm, Person User)
+        public BuyerVM(MainWindowVM mvm, Person u)
         {
             MVM = mvm;
+            User = u;
+            products = MVM.Products;
         }
 
 //EVENTS AND DELEGATES
@@ -105,6 +120,27 @@ namespace AniMall
             }
         }
         DelegateCommand _openCartEvent;
+
+        //Menu Exit Click
+        private void ExitClick(object obj)
+        {
+            App.Current.Shutdown();
+        }
+
+        public ICommand ExitCommand
+        {
+            get
+            {
+                if (_exitEvent == null)
+                {
+                    _exitEvent = new DelegateCommand(ExitClick);
+                }
+
+                return _exitEvent;
+            }
+        }
+
+        DelegateCommand _exitEvent;
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
     }

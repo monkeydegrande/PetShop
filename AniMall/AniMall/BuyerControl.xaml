@@ -4,12 +4,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AniMall"
-             Background="White"
-             Height="475" Width="600">
+             Style="{StaticResource UserControlStyle}">
+    
+    <Grid Style="{StaticResource GridStyle}">
+        <StackPanel>
+            <ContentControl>
+                <StaticResource ResourceKey="Menu"/>
+            </ContentControl>
+            <ListBox x:Name="ProductListBox" 
+                     ItemsSource="{Binding Products}" 
+                     SelectedItem="{Binding SelectedProducts}"
+                     ItemTemplate="{StaticResource ProductTemplate}" 
+                     Width="550" 
+                     Height="400"/>
 
-
-    <ListBox x:Name="AnimalListBox" ItemsSource="{Binding Animals}" 
-             SelectedItem="{Binding SelectedAnimal}" Background="AliceBlue"
-             ItemTemplate="{StaticResource ProductTemplate}" />
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Center" 
+                        Width="Auto">
+                <Label Content="Quantity" 
+                       Height="25" 
+                       Margin="5"/>
+                <TextBox Text="{Binding Quantity}" 
+                         Height="25" 
+                         Width="50" 
+                         Margin="5"/>
+                <Button Height="25" 
+                        Width="100" 
+                        Content="Add To Cart" 
+                        Margin="5" 
+                        Command="{Binding AddToCartCommand}" 
+                        CommandParameter="{Binding ElementName=ProductListBox, Path=Items}"/>
+                <Button Height="25" 
+                        Width="100" 
+                        Content="View cart" 
+                        Command="{Binding OpenCartCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
 </UserControl>
 

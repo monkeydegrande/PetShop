@@ -63,6 +63,7 @@
     <Compile Include="CreateControl.xaml.cs">
       <DependentUpon>CreateControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PWAss.cs" />
     <Compile Include="SellerControl.xaml.cs">
       <DependentUpon>SellerControl.xaml</DependentUpon>
     </Compile>

@@ -17,14 +17,10 @@
                                FontSize="14" 
                                FontWeight="Bold"/>
                     <TextBlock Text="{Binding Description}"
-                               Width="200"
                                TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Price}"
-                               Width="200"
-                               TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Stock}"
-                               Width="200"
-                               TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Price}"/>
+                    <TextBlock Text="{Binding Stock}"/>
+
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
@@ -86,6 +82,43 @@
 
 
 <!-- Styles -->
+        <!-- User Control -->
+        <Style x:Key="UserControlStyle" TargetType="UserControl">
+            <Setter Property="Background"
+                    Value="#FFEEEEEE"/>
+            <Setter Property="FontFamily"
+                    Value="Century Gothic"/>
+            <Setter Property="FontSize"
+                    Value="14"/>
+            <Setter Property="Width"
+                    Value="650"/>
+            <Setter Property="Height"
+                    Value="550"/>
+        </Style>
+        
+        <Style x:Key="GridStyle" TargetType="Grid">
+            <Setter Property="Background"
+                    Value="#FFEEEEEE"/>
+
+        </Style>
+        
+        <!-- StackPanel -->
+        <Style x:Key="StackPanelStyle" TargetType="StackPanel">
+            <Setter Property="HorizontalAlignment"
+                    Value="Center"/>
+            <Setter Property="VerticalAlignment"
+                    Value="Center"/>
+        </Style>
+        
+        <!-- Font Bold -->
+        <Style x:Key="FontBold" TargetType="Label">
+            <Setter Property="FontFamily"
+                    Value="Century Gothic"/>
+            <Setter Property="FontSize"
+                    Value="18"/>
+            <Setter Property="FontWeight"
+                    Value="Bold"/>
+        </Style>
         <!-- Error -->
          
         <!-- Stack Style for Login -->

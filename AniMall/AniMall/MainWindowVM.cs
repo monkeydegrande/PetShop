@@ -31,23 +31,24 @@ namespace AniMall
 
         //List of People
         public ObservableCollection<Person> People = new ObservableCollection<Person>();
+        public ObservableCollection<Animal> Products = new ObservableCollection<Animal>();
 
         //Main csv data file
-        static string PeoplePath = "people.xml";
+        readonly string PeoplePath = "people.xml";
+        readonly string ProductsPath = "products.xml";
 
         //XML Serializer
-        static XmlSerializer Xmler = new XmlSerializer(typeof(ObservableCollection<Person>));
-
-//CONSTRUCTOR  
+        XmlSerializer PeepsXmler = new XmlSerializer(typeof(ObservableCollection<Person>));
+        XmlSerializer ProdsXmler = new XmlSerializer(typeof(ObservableCollection<Animal>));
+        //CONSTRUCTOR  
         public MainWindowVM()
         {
             ReadPeopleFile();
+            ReadProductFile();
         }
 
-
-
 //READING AND WRITING FILE FUNCTIONS
-        //Read in XML to get Students List 
+        //Read in XML to get Users List 
         public void ReadPeopleFile()
         {
             if (File.Exists(PeoplePath))
@@ -56,7 +57,7 @@ namespace AniMall
                 {
                     using (FileStream ReadStream = new FileStream(PeoplePath, FileMode.Open, FileAccess.Read))
                     {
-                        People = Xmler.Deserialize(ReadStream)
+                        People = PeepsXmler.Deserialize(ReadStream)
                         as ObservableCollection<Person>;
                     }
                 }
@@ -65,7 +66,6 @@ namespace AniMall
                     Console.WriteLine("Unable to read XML file", ex.InnerException);
                     MessageBox.Show($"Unable to read XML file\nInnerException:{ ex.InnerException.Message}");
                 }
-
                 CurrentView = new LoginVM(this);
             }
             else
@@ -82,6 +82,31 @@ namespace AniMall
             }
         }
 
+        //Read in XML to get products List 
+        public void ReadProductFile()
+        {
+            if (File.Exists(ProductsPath))
+            {
+                try
+                {
+                    using (FileStream ReadStream = new FileStream(ProductsPath, FileMode.Open, FileAccess.Read))
+                    {
+                        Products = ProdsXmler.Deserialize(ReadStream)
+                        as ObservableCollection<Animal>;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Unable to read products file", ex.InnerException);
+                    MessageBox.Show($"Unable to read products file\nInnerException:{ ex.InnerException.Message}");
+                }
+            }
+            else
+            {
+                MessageBox.Show("There are no products on file.");
+                App.Current.Shutdown();
+            }
+        }
         //Write to Xml file
         public void WriteXmlFile(ObservableCollection<Person> People)
         {
@@ -98,7 +123,7 @@ namespace AniMall
             {
                 using (FileStream fs = new FileStream(PeoplePath, FileMode.Create, FileAccess.ReadWrite))
                 {
-                    Xmler.Serialize(fs, People);
+                    PeepsXmler.Serialize(fs, People);
                 }
             }
         }

@@ -78,7 +78,13 @@
                                  Width="110"
                                  TabIndex="2"
                                  FontFamily="Century Gothic"
-                                 ToolTip="Must be at least 8 alphanumeric characters."/>
+                                 ToolTip="Must be at least 8 alphanumeric characters."
+                                 local:PWAss.BindPassword="true"
+                                 local:PWAss.BoundPassword="{Binding Path=Password, 
+                                                             Mode=TwoWay, 
+                                                             UpdateSourceTrigger=PropertyChanged,
+                                                             ValidatesOnDataErrors=True,
+                                                             NotifyOnValidationError=True}"/>
                 </StackPanel>
             </StackPanel>
 

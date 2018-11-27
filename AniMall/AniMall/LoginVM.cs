@@ -42,13 +42,15 @@ namespace AniMall
         public MainWindowVM MVM;
         public ObservableCollection<Person> People;
 
- //CONSTRUCTOR
+        //CONSTRUCTOR
         public LoginVM(){ }
         public LoginVM(MainWindowVM mvm)
         {
             MVM = mvm;
             People = MVM.People;
         }
+
+//METHODS
         // Ensures username and password fields are not empty
         public bool ValidateEntries(PasswordBox pw)
         {
@@ -57,7 +59,7 @@ namespace AniMall
             return true;
         }
 
-        //DELEGATES AND BUTTONCLICKS
+//DELEGATES AND BUTTONCLICKS
 
         //Login
         private void LoginClick(object obj)
