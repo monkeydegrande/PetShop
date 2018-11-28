@@ -7,28 +7,53 @@
              mc:Ignorable="d" 
              Style="{StaticResource UserControlStyle}">
 
-    <Control.Resources>
+    <UserControl.Resources>
+        <!-- Data Template for products -->
         <DataTemplate x:Key="ProductTemplate">
             <StackPanel Orientation="Horizontal">
-                <Image Source="{Binding ImagePath}" Margin="5" Width="75" Height="60"/>
+                <Image Source="{Binding ImagePath}" 
+                           Margin="5" 
+                           Width="75" 
+                           Height="60"/>
                 <StackPanel>
-                    <TextBlock Text="{Binding Name}" FontFamily="Arial" FontSize="14" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding Description}" Width="200" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Price}" Width="200" TextWrapping="Wrap"/>
-                    <TextBox Text="{Binding PurchAmt}" Width="40" TextWrapping="Wrap" IsEnabled="True"/>
+                    <TextBlock Text="{Binding Name}" 
+                                   FontFamily="Arial" 
+                                   FontSize="14" 
+                                   FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Description}"
+                                   TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Price, StringFormat={}{0:C}}"/>
+                    <TextBlock Text="{Binding PurchAmt, StringFormat=Qty:{0:#}}"/>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
-    </Control.Resources>
+    </UserControl.Resources>
+    
     <Grid Style="{StaticResource GridStyle}">
-        <StackPanel>
-            <ListBox ItemsSource="{Binding Parent.CartContents}"  ItemTemplate="{StaticResource ProductTemplate}" 
-                     ScrollViewer.VerticalScrollBarVisibility="Auto" MaxHeight="400"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label Content="Total" Height="25" Width="75"/>
-                <Label Content="{Binding Parent.TotalCostDisplay}" Height="25" Width="100"/>
+        <StackPanel Width="650" Height="550" VerticalAlignment="Top">
+            <StackPanel Style="{StaticResource MenuPanelStyle}">
+                <Menu Style="{StaticResource MenuStyle}">
+                    <MenuItem Style="{StaticResource MenuItem1Style}" Header="File">
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Save" Command="{Binding SaveCommand}" />
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Save As" Command="{Binding SaveAsCommand}"/>
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Continue" Command="{Binding ContinueCommand}"/>
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Logout" Command="{Binding LogoutCommand}"/>
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Exit" Command="{Binding ExitCommand}"/>
+                    </MenuItem>
+                </Menu>
+                <Label Style="{StaticResource NameStyle}"/>
             </StackPanel>
-            <Button Content="Update Quantities" Height="25" Width="125" Command="{Binding UpdateCartCommand}"/>
+
+            <ListBox Style="{StaticResource ListBoxStyle}" 
+                     ItemsSource="{Binding User.Cart.CartCont}"
+                     ItemTemplate="{StaticResource ProductTemplate}"
+                     SelectedItem="{Binding SelectedAnimal}"/>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Content="Total Cost:" Height="25" Width="75" Margin="5"/>
+                <Label Content="{Binding User.Cart.Total, StringFormat={}{0:C}}" Height="25" Width="100"/>
+            </StackPanel>
+            <Button Content="Remove Selection" Style="{StaticResource CartButtonStyle}" Command="{Binding RemoveCommand}"/>
         </StackPanel>
         </Grid> 
 </UserControl>

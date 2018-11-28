@@ -15,19 +15,33 @@ namespace AniMall
     public class MainWindowVM : INotifyPropertyChanged
     {
 
-//PROPERTIES
+        //PROPERTIES
+        #region Properties
         public MainWindow MW { get; set; }
-        private object currentView;
 
+        public object PreviousVM { get; set; }
+
+        private object currentView;
         public object CurrentView
         {
             get { return currentView; }
-
-            set { currentView = value; OnPropertyChanged("CurrentView"); }
-
+            set
+            {
+                currentView = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("CurrentView"));
+            }
         }
 
-        public Person User;
+        private Person user = new Person();
+        public Person User
+        {
+            get { return user; }
+            set
+            {
+                user = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("User"));
+            }
+        }
 
         //List of People
         public ObservableCollection<Person> People = new ObservableCollection<Person>();
@@ -40,6 +54,8 @@ namespace AniMall
         //XML Serializer
         XmlSerializer PeepsXmler = new XmlSerializer(typeof(ObservableCollection<Person>));
         XmlSerializer ProdsXmler = new XmlSerializer(typeof(ObservableCollection<Animal>));
+        #endregion
+
         //CONSTRUCTOR  
         public MainWindowVM()
         {
@@ -128,13 +144,9 @@ namespace AniMall
             }
         }
 
+        //DELEGATES AND BUTTONCLICKS
 
-//DELEGATES AND BUTTONCLICKS
-        private void OnPropertyChanged(string propName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
     }
 }

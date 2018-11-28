@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Cart.cs" />
     <Compile Include="CartControl.xaml.cs">
       <DependentUpon>CartControl.xaml</DependentUpon>
     </Compile>

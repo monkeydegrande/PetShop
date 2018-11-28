@@ -4,28 +4,54 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AniMall"
-             Background="White"
              Style="{StaticResource UserControlStyle}">
 
     <UserControl.Resources>
+        <!-- Data Template for products -->
         <DataTemplate x:Key="ProductTemplate">
             <StackPanel Orientation="Horizontal">
-                <Image Source="{Binding ImagePath}" Margin="5" Width="75" Height="75"/>
+                <Image Source="{Binding ImagePath}" 
+                           Margin="5" 
+                           Width="75" 
+                           Height="60"/>
                 <StackPanel>
-                    <TextBlock Text="{Binding Name}" FontFamily="Arial" FontSize="14" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding Description}" Width="200" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Price, StringFormat=Window height: {0:C}}" Width="200" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Stock, StringFormat=In Stock: {0:#}}" Width="200" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Name}" 
+                                   FontFamily="Arial" 
+                                   FontSize="14" 
+                                   FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Description}"
+                                   TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Price, StringFormat={}{0:C}}"/>
+                    <TextBlock Text="{Binding Stock, StringFormat=Qty:{0:#}}"/>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
-    
+
     <Grid Style="{StaticResource GridStyle}">
-        <ListBox x:Name="AnimalListBox" ItemsSource="{Binding Animals}" 
-                    SelectedItem="{Binding SelectedAnimal}" Background="AliceBlue"
-                    ItemTemplate="{StaticResource ProductTemplate}" />
+        <StackPanel>
+            <StackPanel Style="{StaticResource MenuPanelStyle}">
+                <Menu Style="{StaticResource MenuStyle}">
+                    <MenuItem Style="{StaticResource MenuItem1Style}" Header="File">
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Save" Command="{Binding SaveCommand}" />
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Save As" Command="{Binding SaveAsCommand}"/>
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Logout" Command="{Binding LogoutCommand}"/>
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Exit" Command="{Binding ExitCommand}"/>
+                    </MenuItem>
+                    <MenuItem Style="{StaticResource MenuItem1Style}" Header="Edit">
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Add Pet" Command="{Binding SaveCommand}" />
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Remove Pet" Command="{Binding SaveAsCommand}"/>
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Edit Pet" Command="{Binding LogoutCommand}"/>
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Change Theme" Command="{Binding ExitCommand}"/>
+                    </MenuItem>
+                </Menu>
+                <Label Style="{StaticResource NameStyle}"/>
+            </StackPanel>
+
+            <ListBox Style="{StaticResource ListBoxStyle}" 
+                     ItemsSource="{Binding Products}"
+                     ItemTemplate="{StaticResource ProductTemplate}"/>
+        </StackPanel>
     </Grid>
 </UserControl>
-
 

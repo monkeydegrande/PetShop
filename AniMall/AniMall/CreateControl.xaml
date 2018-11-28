@@ -8,409 +8,415 @@
              d:DesignHeight="450" Width="625">
 
     <Grid Background="#FFEEEEEE">
-        <!-- Menu -->
-        <ContentControl>
-            <StaticResource ResourceKey="Menu"/>
-        </ContentControl>
-        
-        <StackPanel Orientation="Horizontal" 
-                    HorizontalAlignment="Center" 
-                    VerticalAlignment="Center">
-            <!--ACCOUNT INFORMATION-->
-            <StackPanel Margin="0, 0,10,0">
-                <!--Seller-->
-                <StackPanel>
-                    <StackPanel DockPanel.Dock="Left">
-                        <Label Content="Type of Account:" 
-                               Height="26" Width="110" 
-                               HorizontalAlignment="Left" 
-                               FontFamily="Century Gothic" 
-                               Margin="8,0,0,0"/>
-                        <Border x:Name="AccountBorder" 
-                               BorderThickness="0"
-                               BorderBrush="Salmon">
-                            <ComboBox x:Name="AccountComboBox" 
-                                      ItemsSource="{Binding Accounts}" 
-                                      Validation.Error="Validation_Error"
-                                      SelectedItem="{Binding Path=AccountType, 
-                                                    UpdateSourceTrigger=LostFocus,
-                                                    ValidatesOnDataErrors=True,
-                                                    NotifyOnValidationError=True}"
-                                      Height="25"
-                                      TabIndex="0"
-                                      SelectedIndex="0"
-                                      BorderBrush="White"
-                                      FontFamily="Century Gothic"
-                                      Margin="0"
-                                      MinWidth="110"
-                                      Width="110"
-                                      MinHeight="25"/>
-                        </Border>
-                    </StackPanel>
-                </StackPanel>
-                <!--User Name-->
-                <StackPanel Margin="0,0,0,5">
-                    <Label Content="User Name:" 
-                           Height="26" 
-                           FontFamily="Century Gothic"
-                           Margin="8,0,7,0" />
-                    <TextBox x:Name="UserNameTextBox" 
-                             Validation.Error="Validation_Error"
-                             Text="{Binding Path=UserName, 
-                                    UpdateSourceTrigger=LostFocus,
-                                    ValidatesOnDataErrors=True,
-                                    NotifyOnValidationError=True}"
-                             Height="25" 
-                             TextWrapping="Wrap" 
-                             Width="110" 
-                             TabIndex="1" 
-                             FontFamily="Century Gothic" 
-                             ToolTip="Any string is valid."/>
-                </StackPanel>
-                <!--Password-->
-                <StackPanel>
-                    <Label Content="Password:"
-                           Height="26"
-                           Width="110" 
-                           FontFamily="Century Gothic"/>
-                    <PasswordBox x:Name="Password"
-                                 Height="25"
-                                 Width="110"
-                                 TabIndex="2"
-                                 FontFamily="Century Gothic"
-                                 ToolTip="Must be at least 8 alphanumeric characters."
-                                 local:PWAss.BindPassword="true"
-                                 local:PWAss.BoundPassword="{Binding Path=Password, 
-                                                             Mode=TwoWay, 
-                                                             UpdateSourceTrigger=PropertyChanged,
-                                                             ValidatesOnDataErrors=True,
-                                                             NotifyOnValidationError=True}"/>
-                </StackPanel>
+        <StackPanel>
+            <StackPanel Style="{StaticResource MenuPanelStyle}">
+                <Menu Style="{StaticResource MenuStyle}">
+                    <MenuItem Style="{StaticResource MenuItem1Style}" Header="File">
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Exit" Command="{Binding ExitCommand}"/>
+                    </MenuItem>
+                </Menu>
+                <Label Style="{StaticResource NameStyle}"/>
             </StackPanel>
-
-            <!--PERSONAL INFORMATION-->
-            <StackPanel Margin="10, 0, 0, 0">
-                <!--Names-->
-                <StackPanel  Orientation="Horizontal">
-                    <!--First Name-->
-                    <StackPanel HorizontalAlignment="Left"
-                                Margin="2,0,10,0">
-                        <Label Content="First Name:"
-                               Height="26"
-                               Width="120"
-                               FontFamily="Century Gothic"
-                               HorizontalAlignment="Left"/>
-                        <TextBox x:Name="FirstNameTextBox"
-                                 Validation.Error="Validation_Error"
-                                 Text="{Binding FirstName, 
-                                        UpdateSourceTrigger=LostFocus,
-                                        ValidatesOnDataErrors=True,
-                                        NotifyOnValidationError=True}"
-                                 Height="25"
-                                 TextWrapping="Wrap"
-                                 Width="152"
-                                 TabIndex="3"
-                                 FontFamily="Century Gothic"
-                                 HorizontalAlignment="Left" MinWidth="152" Margin="0"/>
-                    </StackPanel>
-                    <!--Last Name-->
-                    <StackPanel HorizontalAlignment="Right"
-                                Width="160" >
-                        <Label Content="Last Name:"
-                               Height="26"
-                               Width="150"
-                               FontFamily="Century Gothic"
-                               HorizontalAlignment="Left"/>
-                        <TextBox x:Name="LastNameTextBox"
-                                 Validation.Error="Validation_Error"
-                                 Text="{Binding LastName, 
-                                        UpdateSourceTrigger=LostFocus,
-                                        ValidatesOnDataErrors=True,
-                                        NotifyOnValidationError=True}"
-                                 Height="25"
-                                 TextWrapping="Wrap"
-                                 Width="152"
-                                 TabIndex="4"
-                                 FontFamily="Century Gothic"
-                                 HorizontalAlignment="Left"
-                                 MinWidth="152"
-                                 MinHeight="25"/>
-                    </StackPanel>
-
-                </StackPanel>
-                <!--Street Address-->
-                <StackPanel Orientation="Horizontal"
-                            Margin="2,0,0,5">
-                    <!--Number-->
-                    <StackPanel DockPanel.Dock="Left"
-                                Margin="0,0,10,0">
-                        <Label Content="Number:"
-                               Height="26"
-                               Width="65"
-                               Grid.Row="3"
-                               FontFamily="Century Gothic"/>
-                        <TextBox x:Name="HouseNumberTextBox"
-                                 Validation.Error="Validation_Error"
-                                 Text="{Binding HouseNumber, 
-                                        UpdateSourceTrigger=LostFocus,
-                                        ValidatesOnDataErrors=True,
-                                        NotifyOnValidationError=True}"
-                                 Height="25"
-                                 TextWrapping="Wrap"
-                                 Width="70"
-                                 TabIndex="5"
-                                 FontFamily="Century Gothic"/>
-                    </StackPanel>
-                    <!--Street Name-->
-                    <StackPanel DockPanel.Dock="Right">
-                        <Label Content="Street Name:"
-                               Height="26"
-                               Width="234"
-                               HorizontalAlignment="Right"
-                               FontFamily="Century Gothic" />
-                        <TextBox x:Name="StreetNameTextBox"
-                                 Validation.Error="Validation_Error"
-                                 Text="{Binding StreetName, 
-                                        UpdateSourceTrigger=LostFocus,
-                                        ValidatesOnDataErrors=True,
-                                        NotifyOnValidationError=True}"
-                                 Height="25"
-                                 TextWrapping="Wrap"
-                                 Width="234"
-                                 TabIndex="6"
-                                 HorizontalAlignment="Right"
-                                 FontFamily="Century Gothic"/>
-                    </StackPanel>
-                </StackPanel>
-                <!--City State Zip-->
-                <StackPanel Orientation="Horizontal"
-                            Margin="2,0,0,5">
-                    <!--City-->
-                    <StackPanel DockPanel.Dock="Left"
-                                Margin="0,0,10,0" >
-                        <Label Content="City:"
-                               Height="26"
-                               Width="145"
-                               Grid.Row="4"
-                               FontFamily="Century Gothic"/>
-                        <TextBox x:Name="CityTextBox"
-                                 Validation.Error="Validation_Error"
-                                 Text="{Binding City, 
-                                        UpdateSourceTrigger=LostFocus,
-                                        ValidatesOnDataErrors=True,
-                                        NotifyOnValidationError=True}"
-                                 Height="25"
-                                 TextWrapping="Wrap"
-                                 Width="145"
-                                 TabIndex="7"
-                                 FontFamily="Century Gothic"/>
-                    </StackPanel>
-                    <!--State-->
-                    <StackPanel DockPanel.Dock="Right"
-                                Margin="0,0,10,0">
-                        <Label Content="Zip:"
-                               Height="26"
-                               Width="73"
-                               FontFamily="Century Gothic"/>
-                        <TextBox x:Name="ZipTextBox"
-                                 Validation.Error="Validation_Error"
-                                 Text="{Binding Zip, 
-                                        UpdateSourceTrigger=LostFocus,
-                                        ValidatesOnDataErrors=True,
-                                        NotifyOnValidationError=True}"
-                                 Height="25" 
-                                 TextWrapping="Wrap"
-                                 Width="73"
-                                 TabIndex="8"/>
-                    </StackPanel>
-                    <!--State-->
+            <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"
+                        Margin="10">
+                <!--ACCOUNT INFORMATION-->
+                <StackPanel Margin="0, 0,10,0">
+                    <!--Seller-->
                     <StackPanel>
-                        <Label Content="State:"
-                               Height="26"
-                               Width="76"
-                               FontFamily="Century Gothic"/>
-                        <Border x:Name="StateBorder"
-                                BorderThickness="0"
-                                BorderBrush="Salmon">
-                            <ComboBox x:Name="StateComboBox"
-                                      ItemsSource="{Binding States}"
-                                      Validation.Error="Validation_Error"
-                                      SelectedItem="{Binding State, 
-                                                    UpdateSourceTrigger=LostFocus,
-                                                    ValidatesOnDataErrors=True,
-                                                    NotifyOnValidationError=True}"
-                                      Height="25"
-                                      Width="76" 
-                                      TabIndex="9"
-                                      SelectedIndex="0" 
-                                      BorderBrush="White"/>
-                        </Border>
-                    </StackPanel>
-                </StackPanel>
-                <!--Email Address-->
-                <StackPanel Margin="2,0,0,5">
-                    <StackPanel DockPanel.Dock="Right">
-                        <Label Content="Email Address:" 
-                               Height="26"
-                               Width="200"
-                               HorizontalAlignment="Left"
-                               FontFamily="Century Gothic"/>
-                        <TextBox x:Name="EmailAddressTextBox"
-                                 Validation.Error="Validation_Error"
-                                 Text="{Binding Email, 
-                                        UpdateSourceTrigger=LostFocus,
-                                        ValidatesOnDataErrors=True,
-                                        NotifyOnValidationError=True}"
-                                 Height="25"
-                                 TextWrapping="Wrap"
-                                 Width="314"
-                                 TabIndex="10"
-                                 HorizontalAlignment="Left"
-                                 FontFamily="Century Gothic"/>
-                    </StackPanel>
-                </StackPanel>
-                <Separator Height="20"
-                           Margin="10,0"/>
-                <!--Payment Info-->
-                <StackPanel Orientation="Horizontal"
-                            Margin="2,0,0,5">
-                    <!--Card Type-->
-                    <StackPanel HorizontalAlignment="Left" 
-                                Margin="0,0,10,0">
-                        <Label Content="Payment Type:"
-                               Height="26" 
-                               Width="95" 
-                               FontFamily="Century Gothic" 
-                               HorizontalAlignment="Left"/>
-                        <Border x:Name="PaymentBorder"
-                                BorderThickness="0" 
-                                BorderBrush="Salmon">
-                            <ComboBox x:Name="PaymentComboBox"
-                                      ItemsSource="{Binding Cards}" 
-                                      Validation.Error="Validation_Error"
-                                      SelectedItem="{Binding PayType, 
-                                                    UpdateSourceTrigger=LostFocus,
-                                                    ValidatesOnDataErrors=True,
-                                                    NotifyOnValidationError=True}" 
-                                      Height="25" 
-                                      HorizontalAlignment="Left" 
-                                      TabIndex="11"
-                                      BorderBrush="White" 
-                                      FontFamily="Century Gothic" 
-                                      MinWidth="90" 
-                                      Width="95" 
-                                      MinHeight="25"/>
-                        </Border>
-                    </StackPanel>
-                    <!--Card Number-->
-                    <StackPanel>
-                        <Label Content="Card Number:" 
-                               Height="26" 
-                               Width="204"
-                               FontFamily="Century Gothic" 
-                               HorizontalAlignment="Left" />
-                        <TextBox x:Name="CardTextBox" 
-                                 Validation.Error="Validation_Error"
-                                 Text="{Binding CardNumber, 
-                                        UpdateSourceTrigger=LostFocus,
-                                        ValidatesOnDataErrors=True,
-                                        NotifyOnValidationError=True}" 
-                                 Height="25" 
-                                 TextWrapping="Wrap"  
-                                 Width="209" 
-                                 TabIndex="12" 
-                                 FontFamily="Century Gothic"
-                                 HorizontalAlignment="Left" 
-                                 MinWidth="208" 
-                                 MinHeight="25"/>
-                    </StackPanel>
-                </StackPanel>
-                <!--Card Details-->
-                <StackPanel Orientation="Horizontal" 
-                            Margin="2,0,0,5">
-                    <!--Expiration Date-->
-                    <StackPanel>
-                        <Label Content="Expiration Date:" 
-                               Height="26" 
-                               Width="115" 
-                               FontFamily="Century Gothic" 
-                               HorizontalAlignment="Left"/>
-                        <!--Dates-->
-                        <StackPanel Orientation="Horizontal" 
-                                    Margin="0,0,10,0">
-                            <Border x:Name="ExpMoBorder" 
-                                    BorderThickness="0" 
-                                    BorderBrush="Salmon">
-                                <ComboBox x:Name="ExpMoComboBox" 
-                                          ItemsSource="{Binding ExpMos}" 
+                        <StackPanel DockPanel.Dock="Left">
+                            <Label Content="Type of Account:" 
+                                   Height="26" Width="110" 
+                                   HorizontalAlignment="Left" 
+                                   FontFamily="Century Gothic" 
+                                   Margin="8,0,0,0"/>
+                            <Border x:Name="AccountBorder" 
+                                   BorderThickness="0"
+                                   BorderBrush="Salmon">
+                                <ComboBox x:Name="AccountComboBox" 
+                                          ItemsSource="{Binding Accounts}" 
                                           Validation.Error="Validation_Error"
-                                          SelectedItem="{Binding ExpMo, 
+                                          SelectedItem="{Binding Path=AccountType, 
                                                         UpdateSourceTrigger=LostFocus,
                                                         ValidatesOnDataErrors=True,
-                                                        NotifyOnValidationError=True}" 
-                                          Height="25" 
-                                          HorizontalAlignment="Left" 
-                                          TabIndex="13" 
-                                          SelectedIndex="0" 
-                                          BorderBrush="White" 
-                                          FontFamily="Century Gothic" 
-                                          MinWidth="50" 
-                                          Width="50" 
-                                          MinHeight="25" 
-                                          Margin="0"/>
-                            </Border>
-                            <Label Content="/" FontFamily="Century Gothic"/>
-                            <Border x:Name="ExpYrBorder" 
-                                    BorderThickness="0" 
-                                    BorderBrush="Salmon">
-                                <ComboBox x:Name="ExpYrComboBox" 
-                                          ItemsSource="{Binding ExpYrs}" 
-                                          Validation.Error="Validation_Error"
-                                          SelectedItem="{Binding ExpYr, 
-                                                        UpdateSourceTrigger=LostFocus,
-                                                        ValidatesOnDataErrors=True,
-                                                        NotifyOnValidationError=True}" 
-                                          Height="25" 
-                                          HorizontalAlignment="Left" 
-                                          TabIndex="14" 
-                                          SelectedIndex="0" 
-                                          BorderBrush="White" 
-                                          FontFamily="Century Gothic" 
-                                          MinWidth="50" 
-                                          Width="50" 
+                                                        NotifyOnValidationError=True}"
+                                          Height="25"
+                                          TabIndex="0"
+                                          SelectedIndex="0"
+                                          BorderBrush="White"
+                                          FontFamily="Century Gothic"
+                                          Margin="0"
+                                          MinWidth="110"
+                                          Width="110"
                                           MinHeight="25"/>
                             </Border>
                         </StackPanel>
                     </StackPanel>
-                    <!--CVV-->
-                    <StackPanel Margin="0,0,10,0">
-                        <Label Content="CVV:" 
+                    <!--User Name-->
+                    <StackPanel Margin="0,0,0,5">
+                        <Label Content="User Name:" 
                                Height="26" 
-                               Width="40" 
-                               FontFamily="Century Gothic" />
-                        <TextBox x:Name="CVVTextBox" 
+                               FontFamily="Century Gothic"
+                               Margin="8,0,7,0" />
+                        <TextBox x:Name="UserNameTextBox" 
                                  Validation.Error="Validation_Error"
-                                 Text="{Binding CVV, 
+                                 Text="{Binding Path=UserName, 
                                         UpdateSourceTrigger=LostFocus,
                                         ValidatesOnDataErrors=True,
-                                        NotifyOnValidationError=True}" 
+                                        NotifyOnValidationError=True}"
                                  Height="25" 
                                  TextWrapping="Wrap" 
-                                 Width="40" 
-                                 TabIndex="15" 
+                                 Width="110" 
+                                 TabIndex="1" 
                                  FontFamily="Century Gothic" 
-                                 HorizontalAlignment="Left"/>
+                                 ToolTip="Any string is valid."/>
                     </StackPanel>
-                    <!--Add User Button-->
-                    <Button x:Name="AddUserButton" 
-                            Content="Add Account" 
-                            Height="26" 
-                            Width="100" 
-                            Margin="39,0,0,0" 
-                            VerticalAlignment="Bottom" 
-                            TabIndex="16" 
-                            Command="{Binding AddUserCommand}"
-                            CommandParameter="{Binding ElementName=Password}"/>
+                    <!--Password-->
+                    <StackPanel>
+                        <Label Content="Password:"
+                               Height="26"
+                               Width="110" 
+                               FontFamily="Century Gothic"/>
+                        <PasswordBox x:Name="Password"
+                                     Height="25"
+                                     Width="110"
+                                     TabIndex="2"
+                                     FontFamily="Century Gothic"
+                                     ToolTip="Must be at least 8 alphanumeric characters."
+                                     local:PWAss.BindPassword="true"
+                                     local:PWAss.BoundPassword="{Binding Path=Password, 
+                                                                 Mode=TwoWay, 
+                                                                 UpdateSourceTrigger=PropertyChanged,
+                                                                 ValidatesOnDataErrors=True,
+                                                                 NotifyOnValidationError=True}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!--PERSONAL INFORMATION-->
+                <StackPanel Margin="10, 0, 0, 0">
+                    <!--Names-->
+                    <StackPanel  Orientation="Horizontal">
+                        <!--First Name-->
+                        <StackPanel HorizontalAlignment="Left"
+                                    Margin="2,0,10,0">
+                            <Label Content="First Name:"
+                                   Height="26"
+                                   Width="120"
+                                   FontFamily="Century Gothic"
+                                   HorizontalAlignment="Left"/>
+                            <TextBox x:Name="FirstNameTextBox"
+                                     Validation.Error="Validation_Error"
+                                     Text="{Binding FirstName, 
+                                            UpdateSourceTrigger=LostFocus,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"
+                                     Height="25"
+                                     TextWrapping="Wrap"
+                                     Width="152"
+                                     TabIndex="3"
+                                     FontFamily="Century Gothic"
+                                     HorizontalAlignment="Left" MinWidth="152" Margin="0"/>
+                        </StackPanel>
+                        <!--Last Name-->
+                        <StackPanel HorizontalAlignment="Right"
+                                    Width="160" >
+                            <Label Content="Last Name:"
+                                   Height="26"
+                                   Width="150"
+                                   FontFamily="Century Gothic"
+                                   HorizontalAlignment="Left"/>
+                            <TextBox x:Name="LastNameTextBox"
+                                     Validation.Error="Validation_Error"
+                                     Text="{Binding LastName, 
+                                            UpdateSourceTrigger=LostFocus,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"
+                                     Height="25"
+                                     TextWrapping="Wrap"
+                                     Width="152"
+                                     TabIndex="4"
+                                     FontFamily="Century Gothic"
+                                     HorizontalAlignment="Left"
+                                     MinWidth="152"
+                                     MinHeight="25"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                    <!--Street Address-->
+                    <StackPanel Orientation="Horizontal"
+                                Margin="2,0,0,5">
+                        <!--Number-->
+                        <StackPanel DockPanel.Dock="Left"
+                                    Margin="0,0,10,0">
+                            <Label Content="Number:"
+                                   Height="26"
+                                   Width="65"
+                                   Grid.Row="3"
+                                   FontFamily="Century Gothic"/>
+                            <TextBox x:Name="HouseNumberTextBox"
+                                     Validation.Error="Validation_Error"
+                                     Text="{Binding HouseNumber, 
+                                            UpdateSourceTrigger=LostFocus,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"
+                                     Height="25"
+                                     TextWrapping="Wrap"
+                                     Width="70"
+                                     TabIndex="5"
+                                     FontFamily="Century Gothic"/>
+                        </StackPanel>
+                        <!--Street Name-->
+                        <StackPanel DockPanel.Dock="Right">
+                            <Label Content="Street Name:"
+                                   Height="26"
+                                   Width="234"
+                                   HorizontalAlignment="Right"
+                                   FontFamily="Century Gothic" />
+                            <TextBox x:Name="StreetNameTextBox"
+                                     Validation.Error="Validation_Error"
+                                     Text="{Binding StreetName, 
+                                            UpdateSourceTrigger=LostFocus,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"
+                                     Height="25"
+                                     TextWrapping="Wrap"
+                                     Width="234"
+                                     TabIndex="6"
+                                     HorizontalAlignment="Right"
+                                     FontFamily="Century Gothic"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <!--City State Zip-->
+                    <StackPanel Orientation="Horizontal"
+                                Margin="2,0,0,5">
+                        <!--City-->
+                        <StackPanel DockPanel.Dock="Left"
+                                    Margin="0,0,10,0" >
+                            <Label Content="City:"
+                                   Height="26"
+                                   Width="145"
+                                   Grid.Row="4"
+                                   FontFamily="Century Gothic"/>
+                            <TextBox x:Name="CityTextBox"
+                                     Validation.Error="Validation_Error"
+                                     Text="{Binding City, 
+                                            UpdateSourceTrigger=LostFocus,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"
+                                     Height="25"
+                                     TextWrapping="Wrap"
+                                     Width="145"
+                                     TabIndex="7"
+                                     FontFamily="Century Gothic"/>
+                        </StackPanel>
+                        <!--State-->
+                        <StackPanel DockPanel.Dock="Right"
+                                    Margin="0,0,10,0">
+                            <Label Content="Zip:"
+                                   Height="26"
+                                   Width="73"
+                                   FontFamily="Century Gothic"/>
+                            <TextBox x:Name="ZipTextBox"
+                                     Validation.Error="Validation_Error"
+                                     Text="{Binding Zip, 
+                                            UpdateSourceTrigger=LostFocus,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"
+                                     Height="25" 
+                                     TextWrapping="Wrap"
+                                     Width="73"
+                                     TabIndex="8"/>
+                        </StackPanel>
+                        <!--State-->
+                        <StackPanel>
+                            <Label Content="State:"
+                                   Height="26"
+                                   Width="76"
+                                   FontFamily="Century Gothic"/>
+                            <Border x:Name="StateBorder"
+                                    BorderThickness="0"
+                                    BorderBrush="Salmon">
+                                <ComboBox x:Name="StateComboBox"
+                                          ItemsSource="{Binding States}"
+                                          Validation.Error="Validation_Error"
+                                          SelectedItem="{Binding State, 
+                                                        UpdateSourceTrigger=LostFocus,
+                                                        ValidatesOnDataErrors=True,
+                                                        NotifyOnValidationError=True}"
+                                          Height="25"
+                                          Width="76" 
+                                          TabIndex="9"
+                                          SelectedIndex="0" 
+                                          BorderBrush="White"/>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                    <!--Email Address-->
+                    <StackPanel Margin="2,0,0,5">
+                        <StackPanel DockPanel.Dock="Right">
+                            <Label Content="Email Address:" 
+                                   Height="26"
+                                   Width="200"
+                                   HorizontalAlignment="Left"
+                                   FontFamily="Century Gothic"/>
+                            <TextBox x:Name="EmailAddressTextBox"
+                                     Validation.Error="Validation_Error"
+                                     Text="{Binding Email, 
+                                            UpdateSourceTrigger=LostFocus,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}"
+                                     Height="25"
+                                     TextWrapping="Wrap"
+                                     Width="314"
+                                     TabIndex="10"
+                                     HorizontalAlignment="Left"
+                                     FontFamily="Century Gothic"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Separator Height="20"
+                               Margin="10,0"/>
+                    <!--Payment Info-->
+                    <StackPanel Orientation="Horizontal"
+                                Margin="2,0,0,5">
+                        <!--Card Type-->
+                        <StackPanel HorizontalAlignment="Left" 
+                                    Margin="0,0,10,0">
+                            <Label Content="Payment Type:"
+                                   Height="26" 
+                                   Width="95" 
+                                   FontFamily="Century Gothic" 
+                                   HorizontalAlignment="Left"/>
+                            <Border x:Name="PaymentBorder"
+                                    BorderThickness="0" 
+                                    BorderBrush="Salmon">
+                                <ComboBox x:Name="PaymentComboBox"
+                                          ItemsSource="{Binding Cards}" 
+                                          Validation.Error="Validation_Error"
+                                          SelectedItem="{Binding PayType, 
+                                                        UpdateSourceTrigger=LostFocus,
+                                                        ValidatesOnDataErrors=True,
+                                                        NotifyOnValidationError=True}" 
+                                          Height="25" 
+                                          HorizontalAlignment="Left" 
+                                          TabIndex="11"
+                                          BorderBrush="White" 
+                                          FontFamily="Century Gothic" 
+                                          MinWidth="90" 
+                                          Width="95" 
+                                          MinHeight="25"/>
+                            </Border>
+                        </StackPanel>
+                        <!--Card Number-->
+                        <StackPanel>
+                            <Label Content="Card Number:" 
+                                   Height="26" 
+                                   Width="204"
+                                   FontFamily="Century Gothic" 
+                                   HorizontalAlignment="Left" />
+                            <TextBox x:Name="CardTextBox" 
+                                     Validation.Error="Validation_Error"
+                                     Text="{Binding CardNumber, 
+                                            UpdateSourceTrigger=LostFocus,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}" 
+                                     Height="25" 
+                                     TextWrapping="Wrap"  
+                                     Width="209" 
+                                     TabIndex="12" 
+                                     FontFamily="Century Gothic"
+                                     HorizontalAlignment="Left" 
+                                     MinWidth="208" 
+                                     MinHeight="25"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <!--Card Details-->
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="2,0,0,5">
+                        <!--Expiration Date-->
+                        <StackPanel>
+                            <Label Content="Expiration Date:" 
+                                   Height="26" 
+                                   Width="115" 
+                                   FontFamily="Century Gothic" 
+                                   HorizontalAlignment="Left"/>
+                            <!--Dates-->
+                            <StackPanel Orientation="Horizontal" 
+                                        Margin="0,0,10,0">
+                                <Border x:Name="ExpMoBorder" 
+                                        BorderThickness="0" 
+                                        BorderBrush="Salmon">
+                                    <ComboBox x:Name="ExpMoComboBox" 
+                                              ItemsSource="{Binding ExpMos}" 
+                                              Validation.Error="Validation_Error"
+                                              SelectedItem="{Binding ExpMo, 
+                                                            UpdateSourceTrigger=LostFocus,
+                                                            ValidatesOnDataErrors=True,
+                                                            NotifyOnValidationError=True}" 
+                                              Height="25" 
+                                              HorizontalAlignment="Left" 
+                                              TabIndex="13" 
+                                              SelectedIndex="0" 
+                                              BorderBrush="White" 
+                                              FontFamily="Century Gothic" 
+                                              MinWidth="50" 
+                                              Width="50" 
+                                              MinHeight="25" 
+                                              Margin="0"/>
+                                </Border>
+                                <Label Content="/" FontFamily="Century Gothic"/>
+                                <Border x:Name="ExpYrBorder" 
+                                        BorderThickness="0" 
+                                        BorderBrush="Salmon">
+                                    <ComboBox x:Name="ExpYrComboBox" 
+                                              ItemsSource="{Binding ExpYrs}" 
+                                              Validation.Error="Validation_Error"
+                                              SelectedItem="{Binding ExpYr, 
+                                                            UpdateSourceTrigger=LostFocus,
+                                                            ValidatesOnDataErrors=True,
+                                                            NotifyOnValidationError=True}" 
+                                              Height="25" 
+                                              HorizontalAlignment="Left" 
+                                              TabIndex="14" 
+                                              SelectedIndex="0" 
+                                              BorderBrush="White" 
+                                              FontFamily="Century Gothic" 
+                                              MinWidth="50" 
+                                              Width="50" 
+                                              MinHeight="25"/>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                        <!--CVV-->
+                        <StackPanel Margin="0,0,10,0">
+                            <Label Content="CVV:" 
+                                   Height="26" 
+                                   Width="40" 
+                                   FontFamily="Century Gothic" />
+                            <TextBox x:Name="CVVTextBox" 
+                                     Validation.Error="Validation_Error"
+                                     Text="{Binding CVV, 
+                                            UpdateSourceTrigger=LostFocus,
+                                            ValidatesOnDataErrors=True,
+                                            NotifyOnValidationError=True}" 
+                                     Height="25" 
+                                     TextWrapping="Wrap" 
+                                     Width="40" 
+                                     TabIndex="15" 
+                                     FontFamily="Century Gothic" 
+                                     HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <!--Add User Button-->
+                        <Button x:Name="AddUserButton" 
+                                Content="Add Account" 
+                                Height="26" 
+                                Width="100" 
+                                Margin="39,0,0,0" 
+                                VerticalAlignment="Bottom" 
+                                TabIndex="16" 
+                                Command="{Binding AddUserCommand}"
+                                CommandParameter="{Binding ElementName=Password}"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

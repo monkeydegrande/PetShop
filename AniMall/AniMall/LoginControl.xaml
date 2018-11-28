@@ -6,13 +6,16 @@
              xmlns:local="clr-namespace:AniMall"
              mc:Ignorable="d" 
              FocusManager.FocusedElement="{Binding ElementName=UserName}"
-             Style="{ StaticResource UserControlStyle}">
+             Style="{StaticResource UserControlStyle}">
 
     <Grid Style="{StaticResource GridStyle}">
-        <ContentControl>
-            <StaticResource ResourceKey="Menu"/>
-        </ContentControl>
-        
+        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+            <StackPanel Style="{StaticResource MenuPanelStyle}">
+                <Menu Style="{StaticResource MenuStyle}">
+                    <MenuItem Style="{StaticResource MenuItem1Style}" Header="File"/>
+                </Menu>
+            </StackPanel>
+        </StackPanel>
         <StackPanel Style="{StaticResource StackPanelStyle}"
                     Width="300" 
                     Height="110"

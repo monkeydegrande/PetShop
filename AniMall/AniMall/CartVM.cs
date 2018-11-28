@@ -11,37 +11,169 @@ namespace AniMall
 {
     public class CartVM : INotifyPropertyChanged
     {
-        public BuyerVM BVM { get; set; }
-        public CartVM(BuyerVM parent) { BVM = parent; }
-        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+        #region Properties
+        public MainWindowVM MVM { get; set; }
 
-        public void UpdateCartClicked(object obj)
+        private Person user;
+        public Person User
         {
-            //double sumTotal = 0;
-            //List<object> toDelete = new List<object>();
-
-            //foreach (object cartObject in BVM.User.CartCont)
-            //{
-            //        Animal an = cartObject as Animal;
-            //        sumTotal +=an.Price * an.PurchAmt;
-            //        if (an.PurchAmt == 0) { toDelete.Add(an); }
-            //}
-
-            //foreach (object itemToDelete in toDelete) { BVM.User.CartCont.Remove(itemToDelete); }
-            //BVM.Total = sumTotal;
+            get { return user; }
+            set
+            {
+                user = value;
+            }
         }
-        public ICommand UpdateCartCommand
+
+        //private double totalCost;
+        //public double TotalCost
+        //{
+        //    get { return totalCost; }
+        //    set
+        //    {
+        //        totalCost = value;
+        //        PropertyChanged(this, new PropertyChangedEventArgs("TotalCost"));
+        //    }
+        //}
+
+       //private int items;
+        //public int Items
+        //{
+        //    get { return items; }
+        //    set
+        //    {
+        //        items = value;
+        //        PropertyChanged(this, new PropertyChangedEventArgs("Items"));
+        //    }
+        //}
+
+        private Animal selectedAnimal;
+        public Animal SelectedAnimal
+        {
+            get { return selectedAnimal; }
+            set
+            {
+                selectedAnimal = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("SelectedAnimal"));
+            }
+        }
+        #endregion
+
+//CONSTRUCTOR
+        public CartVM(MainWindowVM mvm)
+        {
+            MVM = mvm;
+            User = MVM.User;
+            CalculateTotals();
+        }
+
+//METHODS
+        private void CalculateTotals()
+        {
+            User.Cart.Total = 0;
+            User.Cart.Items = 0;
+            foreach (Animal an in User.Cart.CartCont)
+            {
+                User.Cart.Total += an.Price * an.PurchAmt;
+                User.Cart.Items += an.PurchAmt;
+            }
+        }
+        public void RemoveClicked(object obj)
+        {
+            User.Cart.CartCont.Remove(SelectedAnimal);
+            CalculateTotals(); 
+        }
+        public ICommand RemoveCommand
         {
             get
             {
-                if (_updateCartEvent == null)
+                if (removeEvent == null)
                 {
-                    _updateCartEvent = new DelegateCommand(UpdateCartClicked);
+                    removeEvent = new DelegateCommand(RemoveClicked);
                 }
 
-                return _updateCartEvent;
+                return removeEvent;
             }
         }
-        DelegateCommand _updateCartEvent;
+        DelegateCommand removeEvent;
+
+        private void SaveClick(object obj)
+        {
+            Person temp = new Person();
+            temp = MVM.People.Where(x => x.FirstName == User.FirstName && x.LastName == User.LastName) as Person;
+            MVM.People.Remove(temp);
+            MVM.People.Add(User);
+            MVM.WriteXmlFile(MVM.People);
+        }
+        public ICommand SaveCommand
+        {
+            get
+            {
+                if (saveEvent == null)
+                {
+                    saveEvent = new DelegateCommand(SaveClick);
+                }
+
+                return saveEvent;
+            }
+        }
+        DelegateCommand saveEvent;
+
+        private void ContinueClick(object obj)
+        {
+            MVM.CurrentView = MVM.PreviousVM;
+        }
+        public ICommand ContinueCommand
+        {
+            get
+            {
+                if (continueEvent == null)
+                {
+                    continueEvent = new DelegateCommand(ContinueClick);
+                }
+                return continueEvent;
+            }
+        }
+        DelegateCommand continueEvent;
+
+        private void LogoutClick(object obj)
+        {
+            MVM.User = new Person();
+            MVM.ReadPeopleFile();
+            MVM.ReadProductFile();
+            MVM.CurrentView = new LoginVM(MVM);
+        }
+        public ICommand LogoutCommand
+        {
+            get
+            {
+                if (logoutEvent == null)
+                {
+                    logoutEvent = new DelegateCommand(LogoutClick);
+                }
+                return logoutEvent;
+            }
+        }
+        DelegateCommand logoutEvent;
+
+        //Menu Exit Click
+        private void ExitClick(object obj)
+        {
+            App.Current.Shutdown();
+        }
+        public ICommand ExitCommand
+        {
+            get
+            {
+                if (exitEvent == null)
+                {
+                    exitEvent = new DelegateCommand(ExitClick);
+                }
+
+                return exitEvent;
+            }
+        }
+        DelegateCommand exitEvent;
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
     }
 }

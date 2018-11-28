@@ -9,7 +9,6 @@ using System.Xml.Serialization;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 
-
 namespace AniMall
 {
     [XmlRoot(ElementName = "Person")]
@@ -83,7 +82,7 @@ namespace AniMall
         }
 
         [XmlIgnore]
-        private Address homeAddress; 
+        private Address homeAddress;
         [XmlElement(ElementName = "HomeAddress")]
         public Address HomeAddress
         {
@@ -94,6 +93,7 @@ namespace AniMall
                 PropertyChanged(this, new PropertyChangedEventArgs("HomeAddress"));
             }
         }
+
         [XmlIgnore]
         private string email;
         [XmlElement(DataType = "string", ElementName = "Email")]
@@ -121,13 +121,24 @@ namespace AniMall
         }
 
         [XmlIgnore]
-
-        [XmlElement(ElementName = "CartCont")]
-        public ObservableCollection<Animal> CartCont { get; set; }
+        private Cart cart;
+        [XmlElement(ElementName = "Cart")]
+        public Cart Cart
+        {
+            get { return cart; }
+            set
+            {
+                cart = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Cart"));
+            }
+        }
         #endregion
 
         /**CONSTRUCTORS**/
-        public Person() { }
+        public Person()
+        {
+            cart = new Cart();
+        }
 
         public Person(string aType, string uName, string pword, string first, string last, Address address, string emailAddy, CC cc)
         {
@@ -139,15 +150,15 @@ namespace AniMall
             HomeAddress = address;
             email = emailAddy;
             creditCard = cc;
+            cart = new Cart();
         }
 
 
         //Return name and ID of student
         public override string ToString()
         {
-            return $"{FirstName}";
+            return $"Hello {FirstName} {LastName}!";
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
     }

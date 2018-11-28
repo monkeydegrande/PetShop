@@ -8,63 +8,85 @@ using System.Windows.Input;
 
 namespace AniMall
 {
-
     public class SellerVM : INotifyPropertyChanged
     {
+        #region Properties
         Person User;
         MainWindowVM MVM;
-        public SellerVM(MainWindowVM mvm, Person user)
+
+        private ObservableCollection<Animal> products;
+        public ObservableCollection<Animal> Products
         {
-            User = user;
+            get { return products; }
+            set
+            {
+                products = value;
+            }
+        }
+        #endregion
+
+//CONSTRUCTOR
+        public SellerVM(MainWindowVM mvm)
+        {
+            User = mvm.User;
+            Products = mvm.Products;
             MVM = mvm;
         }
 
+//DELGATES AND EVENT HANDLRES
         private void EditAnimal(object obj)
         {
 
         }
-
         public ICommand EditAnimalCommand
         {
             get
             {
-                if (_editAnimalEvent == null)
+                if (editAnimalEvent == null)
                 {
-                    _editAnimalEvent = new DelegateCommand(EditAnimal);
+                    editAnimalEvent = new DelegateCommand(EditAnimal);
                 }
 
-                return _editAnimalEvent;
+                return editAnimalEvent;
             }
         }
-        DelegateCommand _editAnimalEvent;
+        DelegateCommand editAnimalEvent;
 
+        private void AddAnimal(object obj)
+        {
+
+        }
         public ICommand AddAnimalCommand
         {
             get
             {
-                if (_addAnimalEvent == null)
+                if (addAnimalEvent == null)
                 {
-                    _addAnimalEvent = new DelegateCommand(EditAnimal);
+                    addAnimalEvent = new DelegateCommand(EditAnimal);
                 }
 
-                return _addAnimalEvent;
+                return addAnimalEvent;
             }
         }
-        DelegateCommand _addAnimalEvent;
+        DelegateCommand addAnimalEvent;
 
+        private void RemoveAnimal(object obj)
+        {
+
+        }
         public ICommand RemoveAnimalCommand
         {
             get
             {
-                if (_removeAnimalEvent == null)
+                if (removeAnimalEvent == null)
                 {
-                    _removeAnimalEvent = new DelegateCommand(EditAnimal);
+                    removeAnimalEvent = new DelegateCommand(RemoveAnimal);
                 }
 
-                return _removeAnimalEvent;
+                return removeAnimalEvent;
             }
         }
-        DelegateCommand _removeAnimalEvent;
+        DelegateCommand removeAnimalEvent;
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
     }

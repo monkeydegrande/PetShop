@@ -14,8 +14,16 @@ namespace AniMall
 {
     public class LoginVM : INotifyPropertyChanged
     {
-        public Person User = new Person();
-
+        private Person user = new Person();
+        public Person User
+        {
+            get { return user; }
+            set
+            {
+                user = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("User"));
+            }
+        }
         private string uName;
         public string UName
         {

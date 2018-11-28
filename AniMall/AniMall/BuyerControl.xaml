@@ -5,26 +5,54 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AniMall"
              Style="{StaticResource UserControlStyle}">
+
+    <UserControl.Resources>
+        <!-- Data Template for products -->
+        <DataTemplate x:Key="ProductTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding ImagePath}" 
+                           Margin="5" 
+                           Width="75" 
+                           Height="60"/>
+                <StackPanel>
+                    <TextBlock Text="{Binding Name}" 
+                                   FontFamily="Arial" 
+                                   FontSize="14" 
+                                   FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Description}"
+                                   TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Price, StringFormat={}{0:C}}"/>
+                    <TextBlock Text="{Binding Stock, StringFormat=Qty:{0:#}}"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
     
     <Grid Style="{StaticResource GridStyle}">
         <StackPanel>
-            <ContentControl>
-                <StaticResource ResourceKey="Menu"/>
-            </ContentControl>
-            <ListBox x:Name="ProductListBox" 
-                     ItemsSource="{Binding Products}" 
-                     SelectedItem="{Binding SelectedProducts}"
-                     ItemTemplate="{StaticResource ProductTemplate}" 
-                     Width="550" 
-                     Height="400"/>
-
+            <StackPanel Style="{StaticResource MenuPanelStyle}">
+                <Menu Style="{StaticResource MenuStyle}">
+                    <MenuItem Style="{StaticResource MenuItem1Style}" Header="File">
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Save" Command="{Binding SaveCommand}" />
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Save As" Command="{Binding SaveAsCommand}"/>
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Logout" Command="{Binding LogoutCommand}"/>
+                        <MenuItem Style="{StaticResource MenuItem2Style}" Header="Exit" Command="{Binding ExitCommand}"/>
+                    </MenuItem>
+                </Menu>
+                <Label Style="{StaticResource NameStyle}"/>
+            </StackPanel>
+            
+            <ListBox Style="{StaticResource ListBoxStyle}" 
+                     ItemsSource="{Binding Products}"
+                     ItemTemplate="{StaticResource ProductTemplate}"/>
+            
             <StackPanel Orientation="Horizontal" 
                         HorizontalAlignment="Center" 
                         Width="Auto">
                 <Label Content="Quantity" 
                        Height="25" 
                        Margin="5"/>
-                <TextBox Text="{Binding Quantity}" 
+                <TextBox Text="{Binding Qty}" 
                          Height="25" 
                          Width="50" 
                          Margin="5"/>
@@ -36,7 +64,7 @@
                         CommandParameter="{Binding ElementName=ProductListBox, Path=Items}"/>
                 <Button Height="25" 
                         Width="100" 
-                        Content="View cart" 
+                        Content="View Cart" 
                         Command="{Binding OpenCartCommand}"/>
             </StackPanel>
         </StackPanel>

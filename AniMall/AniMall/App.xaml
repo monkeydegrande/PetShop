@@ -4,27 +4,6 @@
              xmlns:local="clr-namespace:AniMall"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-<!-- Data Template for products -->
-        <DataTemplate x:Key="ProductTemplate">
-            <StackPanel Orientation="Horizontal">
-                <Image Source="{Binding ImagePath}" 
-                       Margin="5" 
-                       Width="75" 
-                       Height="60"/>
-                <StackPanel>
-                    <TextBlock Text="{Binding Name}" 
-                               FontFamily="Arial" 
-                               FontSize="14" 
-                               FontWeight="Bold"/>
-                    <TextBlock Text="{Binding Description}"
-                               TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Price}"/>
-                    <TextBlock Text="{Binding Stock}"/>
-
-                </StackPanel>
-            </StackPanel>
-        </DataTemplate>
-
         <DataTemplate x:Key="AddToCartDisplay">
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
@@ -49,40 +28,76 @@
             </StackPanel>
         </DataTemplate>
         
-        
-<!-- Control Templates-->   
-        <!--MENU-->
-        <DockPanel x:Key="Menu" 
-                   LastChildFill="True" 
-                   Height="28" 
-                   VerticalAlignment="Top" 
-                   Grid.ColumnSpan="10">
-            <Menu DockPanel.Dock="Top"
-                  Height="28" 
-                  Width="Auto" 
-                  Background="Gainsboro" >
-                <MenuItem  HorizontalAlignment="Left"
-                           Header="File" 
-                           TabIndex="15" 
-                           Background="Gainsboro" 
-                           FontFamily="Century Gothic"
-                           Height="25">
-                    <MenuItem Header="Exit" 
-                              Command="{Binding ExitCommand}"/>
-                </MenuItem>
-                <Label x:Name ="NameTextBlock" 
-                       Content="{Binding User.FName}" 
-                       Height="25" 
-                       Width="210"  
-                       VerticalAlignment="Center" 
-                       HorizontalContentAlignment="Right" 
-                       FontFamily="Century Gothic"/>
-            </Menu>
-        </DockPanel>
-
-
+     
 <!-- Styles -->
-        <!-- User Control -->
+        <!-- ListBox Style -->
+        <Style x:Key="ListBoxStyle" TargetType="ListBox">
+            <Setter Property="SelectedItem"
+                    Value="{Binding SelectedAnimal}"/>
+            <Setter Property="Width"
+                    Value="550"/>
+            <Setter Property="Height"
+                    Value="400"/>
+        </Style>
+
+        <!-- Menu DockPanel Style -->
+        <Style x:Key="MenuPanelStyle" TargetType="StackPanel">
+            <Setter Property="Orientation"
+                    Value="Horizontal"/>
+            <Setter Property="Height"
+                    Value="25"/>
+            <Setter Property="Background"
+                    Value="Gainsboro"/>
+            <Setter Property="Width"
+                    Value="650"/>
+        </Style>
+
+        <!-- Menu Style -->
+        <Style x:Key="MenuStyle" TargetType="Menu">
+            <Setter Property="Height"
+                    Value="25"/>
+            <Setter Property="Width"
+                    Value="400"/>
+            <Setter Property="Background"
+                    Value="Gainsboro"/>
+        </Style>
+
+        <!-- Menu Item 1 Style -->
+        <Style x:Key="MenuItem1Style" TargetType="MenuItem">
+            <Setter Property="HorizontalAlignment"
+                    Value="Left"/>
+            <Setter Property="Background"
+                    Value="Gainsboro"/>
+            <Setter Property="FontFamily"
+                    Value="Century Gothic"/>
+            <Setter Property="Height"
+                    Value="25"/>
+            <Setter Property="Width"
+                    Value="120"/>
+        </Style>
+
+        <!-- Menu Item 1 Style -->
+        <Style x:Key="MenuItem2Style" TargetType="MenuItem">
+            <Setter Property="HorizontalAlignment"
+                    Value="Left"/>
+            <Setter Property="FontFamily"
+                    Value="Century Gothic"/>
+            <Setter Property="Height"
+                    Value="25"/>
+            <Setter Property="Width"
+                    Value="160"/>
+        </Style>
+        <!-- Menu Name Style -->
+        <Style x:Key="NameStyle" TargetType="Label">
+            <Setter Property="Content"
+                    Value="{Binding User}"/>
+            <Setter Property="Height"
+                    Value="25"/>
+            <Setter Property="Width"
+                    Value="250"/>
+        </Style>
+        
+        <!-- User Control Style -->
         <Style x:Key="UserControlStyle" TargetType="UserControl">
             <Setter Property="Background"
                     Value="#FFEEEEEE"/>
@@ -96,13 +111,14 @@
                     Value="550"/>
         </Style>
         
+        <!-- Grid Style -->
         <Style x:Key="GridStyle" TargetType="Grid">
             <Setter Property="Background"
                     Value="#FFEEEEEE"/>
 
         </Style>
         
-        <!-- StackPanel -->
+        <!-- StackPanel Style -->
         <Style x:Key="StackPanelStyle" TargetType="StackPanel">
             <Setter Property="HorizontalAlignment"
                     Value="Center"/>
@@ -110,7 +126,7 @@
                     Value="Center"/>
         </Style>
         
-        <!-- Font Bold -->
+        <!-- Font Bold Style -->
         <Style x:Key="FontBold" TargetType="Label">
             <Setter Property="FontFamily"
                     Value="Century Gothic"/>
@@ -119,8 +135,7 @@
             <Setter Property="FontWeight"
                     Value="Bold"/>
         </Style>
-        <!-- Error -->
-         
+  
         <!-- Stack Style for Login -->
         <Style TargetType="StackPanel"
                x:Key="LoginStackStyle">
@@ -132,7 +147,7 @@
                     Value="0,2"/>
         </Style>
 
-<!-- Label Style for login -->
+        <!-- Label Style for login -->
         <Style TargetType="Label"
                x:Key="LoginLabelStyle">
             <Setter Property="HorizontalAlignment" 
@@ -147,7 +162,7 @@
                     Value="14"/>
         </Style>
         
-<!-- TextBox Style for login -->
+        <!-- TextBox Style for login -->
         <Style TargetType="TextBox"
                x:Key="LoginTextBoxStyle">
             <Setter Property="VerticalContentAlignment"
@@ -162,7 +177,7 @@
                     Value="14"/>
         </Style>
         
-<!-- PassBox Style for login -->
+        <!-- PassBox Style for login -->
         <Style TargetType="PasswordBox" 
                x:Key="LoginPasswordBoxStyle">
             <Setter Property="VerticalContentAlignment" 
@@ -177,7 +192,7 @@
                     Value="14"/>
         </Style>
         
-<!-- Button Style for login -->
+        <!-- Button Style for login -->
         <Style TargetType="Button"
                x:Key="LoginButtonStyle">
             <Setter Property="VerticalContentAlignment"
@@ -195,6 +210,24 @@
             <Setter Property="Margin" 
                     Value="5, 5, 5, 0"/>
         </Style>
-
+        
+        <!-- Button Style for Cart -->
+        <Style TargetType="Button"
+               x:Key="CartButtonStyle">
+            <Setter Property="VerticalContentAlignment"
+                    Value = "Center"/>
+            <Setter Property="Height" 
+                    Value ="30"/>
+            <Setter Property="Width" 
+                    Value="150"/>
+            <Setter Property="FontFamily" 
+                    Value="Century Gothic"/>
+            <Setter Property="FontSize" 
+                    Value="14"/>
+            <Setter Property="Background" 
+                    Value="White"/>
+            <Setter Property="Margin" 
+                    Value="5, 5, 5, 0"/>
+        </Style>
     </Application.Resources>
 </Application>
