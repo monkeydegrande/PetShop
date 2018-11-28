@@ -91,11 +91,11 @@ namespace AniMall
                     MVM.User = User;
                     if (User.AccountType == "Seller")
                     {
-                        MVM.CurrentView = new SellerVM(MVM, User);
+                        MVM.CurrentView = new SellerVM(MVM);
                     }
                     else
                     {
-                        MVM.CurrentView = new BuyerVM(MVM, User);
+                        MVM.CurrentView = new BuyerVM(MVM);
                     }
                 }
                 else

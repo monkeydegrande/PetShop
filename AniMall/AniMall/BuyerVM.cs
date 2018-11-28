@@ -82,10 +82,10 @@ namespace AniMall
         #endregion
 
 //CONSTRUCTOR
-        public BuyerVM(MainWindowVM mvm, Person u)
+        public BuyerVM(MainWindowVM mvm)
         {
             MVM = mvm;
-            User = u;
+            User = mvm.User;
             products = MVM.Products;
         }
 

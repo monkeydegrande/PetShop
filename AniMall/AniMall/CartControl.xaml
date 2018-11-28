@@ -51,7 +51,7 @@
             
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label Content="Total Cost:" Height="25" Width="75" Margin="5"/>
-                <Label Content="{Binding User.Cart.Total, StringFormat={}{0:C}}" Height="25" Width="100"/>
+                <Label Content="{Binding User.Cart.Total, StringFormat=${0:C}}" Height="25" Width="100"/>
             </StackPanel>
             <Button Content="Remove Selection" Style="{StaticResource CartButtonStyle}" Command="{Binding RemoveCommand}"/>
         </StackPanel>

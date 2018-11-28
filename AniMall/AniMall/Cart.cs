@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ using System.Xml.Serialization;
 namespace AniMall
 {
     [XmlRoot(ElementName = "Cart")]
-    public class Cart
+    public class Cart : INotifyPropertyChanged
     {
         [XmlIgnore]
         private ObservableCollection<Animal> cartCont;
@@ -32,11 +33,13 @@ namespace AniMall
             set
             {
                 total = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Total"));
             }
         }
 
         [XmlIgnore]
         private int items;
+
         [XmlElement(ElementName = "Items")]
         public int Items
         {
@@ -44,6 +47,7 @@ namespace AniMall
             set
             {
                 items = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Items"));
             }
         }
 
@@ -52,5 +56,7 @@ namespace AniMall
             total = 0;
             cartCont = new ObservableCollection<Animal>();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
     }
 }
